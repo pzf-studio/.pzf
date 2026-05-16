@@ -23,21 +23,21 @@ html, body {
 body {
     margin: 0;
     padding: 0;
-    overflow-x: auto;      /* позволяет скроллить по горизонтали, если контент шире окна */
-    overflow-y: auto;      /* вертикальный скролл при необходимости */
+    overflow-x: auto;
+    overflow-y: auto;
     display: flex;
-    justify-content: flex-start;  /* контент прижат к левому краю */
+    justify-content: flex-start;
     align-items: flex-start;
 }
 
 .home {
     position: relative;
-    width: 1440px;           /* исходная ширина макета */
-    height: 2956px;          /* исходная высота макета */
+    width: 1440px;
+    height: 2956px;
     background: #FFFFFF;
-    transform-origin: top left;  /* масштабирование от левого верхнего угла */
+    transform-origin: top left;
     overflow: hidden;
-    flex-shrink: 0;          /* запрещаем сжатие при флексах */
+    flex-shrink: 0;
 }
 
 /* Логотип слева (исходный) */
@@ -287,15 +287,35 @@ body {
     background: #D9D9D9;
 }
 
-.carousel__slide {
+/* Новая карусель — трек и элементы */
+.carousel__track-container {
     position: absolute;
     width: 1440px;
     height: 543px;
     left: 0;
     top: 0;
+    overflow: hidden;
+}
+
+.carousel__track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.carousel__item {
+    flex: 0 0 1440px;
+    width: 1440px;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    transition: background-image 0.5s ease;
+    background-repeat: no-repeat;
+}
+
+/* Убираем старый .carousel__slide, если он был */
+.carousel__slide {
+    display: none;
 }
 
 /* Модуль левой стрелки (arrleft) */
@@ -304,7 +324,7 @@ body {
     width: 87px;
     height: 153px;
     left: 40px;
-    top: 293px;
+    top: 210px;
     cursor: pointer;
     z-index: 5;
 }
@@ -315,7 +335,7 @@ body {
     width: 87px;
     height: 153px;
     right: 40px;
-    top: 293px;
+    top: 210px;
     cursor: pointer;
     z-index: 5;
 }

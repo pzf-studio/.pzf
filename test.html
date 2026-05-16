@@ -1,54 +1,700 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стрелка вправо (отзеркаленные исходные линии)</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anton Shell</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Дополнительные стили для splash-экрана -->
     <style>
-        body {
-            margin: 0;
+        /* ---------- Splash-экран (поверх всего) ---------- */
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: #2c2c2c;
+            background: #ffffff;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            will-change: opacity, transform;
+            overflow: hidden;
+        }
+
+        .splash-overlay--hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .splash-overlay--removed {
+            display: none;
+        }
+
+        /* Контейнер splash — сохраняет пропорции 1440×880, центрируется */
+        .splash {
+            position: relative;
+            width: 1440px;
+            height: 880px;
+            flex-shrink: 0;
+            background: #ffffff;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            transform-origin: center center;
+            /* масштабирование под ширину окна (как у .home) */
+        }
+
+        /* Фоновая картинка (IMG_8974.jpg) */
+        .splash__image {
+            position: absolute;
+            width: 1440px;
+            height: 960px;
+            left: 0px;
+            top: -24px;
+            background: url(IMG_8974.jpg) no-repeat center / cover;
+        }
+
+        /* Кнопка «НАЖМИТЕ ЧТОБЫ ВОЙТИ» — вертикальная */
+        .splash__button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 18px 15px;
+            gap: 10px;
+            position: absolute;
+            width: 55px;
+            height: 309px;
+            left: 566px;
+            top: 765px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transform: matrix(0, 1, 1, 0, 0, 0);
+            /* поворот 90° */
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .splash__button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .splash__button-text {
+            width: 273px;
+            height: 29px;
+            font-family: 'SF Compact Display', sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            color: rgba(255, 255, 255, 0.8);
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            white-space: nowrap;
+        }
+
+        /* Адаптация splash под размеры окна (аналогично .home) */
+        @media (max-width: 1440px) {
+            .splash {
+                transform: scale(calc(100vw / 1440));
+            }
+        }
+
+        /* Подсказка "прокрутите или нажмите" — маленькая, почти незаметная */
+        .splash__hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'SF Compact Display', sans-serif;
+            font-weight: 300;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            z-index: 10;
+            pointer-events: none;
+            animation: hintPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes hintPulse {
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* ---------- Основной сайт (изначально скрыт) ---------- */
+        .home {
+            display: none;
+            /* пока splash активен, сайт не виден */
+        }
+
+        .home--visible {
+            display: block;
+        }
+
+        /* Корректировка body для правильного отображения */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: #ffffff;
         }
     </style>
 </head>
 <body>
-    <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_ii_46_11)">
-            <!-- Скруглённый фон (без изменений) -->
-            <rect width="87" height="153" rx="30" fill="white" fill-opacity="0.15"/>
 
-            <!-- Группа с отзеркаленными линиями (горизонтальное отражение относительно центра SVG) -->
-            <g transform="translate(87, 0) scale(-1, 1)">
-                <!-- Исходная линия (не менялась) -->
-                <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)" 
-                      stroke="white" stroke-opacity="0.5" stroke-width="2"/>
-                <!-- Исходный путь (не менялся) -->
-                <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2"/>
-            </g>
-        </g>
+    <!-- ======== SPLASH-ЭКРАН ======== -->
+    <div class="splash-overlay" id="splashOverlay">
+        <div class="splash" id="splashContainer">
+            <div class="splash__image"></div>
+            <div class="splash__button" id="splashButton">
+                <span class="splash__button-text">НАЖМИТЕ ЧТОБЫ ВОЙТИ</span>
+            </div>
+            <div class="splash__hint">ПРОКРУТИТЕ ИЛИ НАЖМИТЕ</div>
+        </div>
+    </div>
 
-        <defs>
-            <filter id="filter0_ii_46_11" x="0" y="-2" width="87" height="157" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dy="2"/>
-                <feGaussianBlur stdDeviation="5"/>
-                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_46_11"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dy="-2"/>
-                <feGaussianBlur stdDeviation="5"/>
-                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-                <feBlend mode="normal" in2="effect1_innerShadow_46_11" result="effect2_innerShadow_46_11"/>
-            </filter>
-        </defs>
-    </svg>
+    <!-- ======== ОСНОВНОЙ САЙТ ======== -->
+    <div class="home" id="mainSite">
+
+        <!-- Логотип слева (исходный) -->
+        <div class="logo"></div>
+
+        <!-- Логотип справа (новый) -->
+        <div class="logo logo--right"></div>
+
+        <!-- Основное меню (свёрнутое) -->
+        <div class="menu--default" id="menuDefault">
+            <div class="menu__highlight-rectangle" id="highlightRect"></div>
+            <div class="menu__inner">
+                <span class="menu__item" data-menu="novelties">НОВИНКИ</span>
+                <span class="menu__item" data-menu="designers">ДИЗАЙНЕРЫ</span>
+                <span class="menu__item">МУЖСКОЕ</span>
+                <span class="menu__item">ЖЕНСКОЕ</span>
+                <span class="menu__item">СКИДКИ</span>
+            </div>
+        </div>
+
+        <!-- Выпадающее меню «ДИЗАЙНЕРЫ» -->
+        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--active">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="designers-grid">
+                <div class="designers-col">
+                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
+                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
+                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
+                    <span>Guidi</span>
+                </div>
+                <div class="designers-col">
+                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
+                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
+                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
+                    <span>424</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Выпадающее меню «НОВИНКИ» -->
+        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--active">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="novelties-grid">
+                <div class="novelties-col">
+                    <span class="novelties-title">Коллекции</span>
+                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
+                    <span>Мой выбор</span><span>Все товары</span>
+                </div>
+                <div class="novelties-col">
+                    <span class="novelties-title">Категории</span>
+                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
+                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
+                    <span>Сумки</span><span>Шорты и юбки</span><span>Головные уборы</span>
+                </div>
+            </div>
+            <div class="search-block">
+                <div class="search-block__icon"></div>
+                <span class="search-block__placeholder">Поиск</span>
+            </div>
+        </div>
+
+        <!-- Боковая кнопка ПОИСК / КОРЗИНА -->
+        <div class="side-button" id="sideButton">
+            <div class="side-button__inner">
+                <span class="side-button__text">ПОИСК</span>
+                <span class="side-button__text">КОРЗИНА</span>
+            </div>
+        </div>
+
+        <!-- Карусель (новая бесшовная) -->
+        <div class="carousel">
+            <div class="carousel__background"></div>
+
+            <!-- Контейнер для бесконечного трека -->
+            <div class="carousel__track-container">
+                <div class="carousel__track" id="carouselTrack"></div>
+            </div>
+
+            <!-- Левая стрелка -->
+            <div class="arrleft" id="arrleft">
+                <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_ii_46_11_left)">
+                        <rect width="87" height="153" rx="30" fill="white" fill-opacity="0.15" />
+                        <g transform="translate(87, 0) scale(-1, 1)">
+                            <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)" stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                            <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                        </g>
+                    </g>
+                    <defs>
+                        <filter id="filter0_ii_46_11_left" x="0" y="-2" width="87" height="157" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_46_11_left"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="effect1_innerShadow_46_11_left" result="effect2_innerShadow_46_11_left"/>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Правая стрелка -->
+            <div class="arrright" id="arrright">
+                <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_ii_46_11_right)">
+                        <rect width="87" height="153" rx="30" transform="matrix(-1 0 0 1 87 0)" fill="white" fill-opacity="0.15" />
+                        <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)" stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                        <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                    </g>
+                    <defs>
+                        <filter id="filter0_ii_46_11_right" x="0" y="-2" width="87" height="157" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_46_11_right"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="effect1_innerShadow_46_11_right" result="effect2_innerShadow_46_11_right"/>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Индикаторы -->
+            <div class="carousel__indicators" id="carouselIndicators">
+                <div class="carousel__indicator carousel__indicator--active"></div>
+                <div class="carousel__indicator"></div>
+                <div class="carousel__indicator"></div>
+            </div>
+        </div>
+
+        <!-- Заголовок НОВИНКИ и кнопка СМОТРЕТЬ ВСЕ -->
+        <div class="section-title">НОВИНКИ</div>
+        <div class="watch-all-button" id="watchAllBtn">
+            <span class="watch-all-button__text">СМОТРЕТЬ ВСЕ</span>
+        </div>
+
+        <!-- Сетка товаров -->
+        <div class="products-grid">
+            <!-- Ряд 1 -->
+            <div class="product-card product-card--1">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--1"></div>
+                <div class="product-card__info product-card__info--1">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">JAPANESE DUST SELVEDGE TRUCKER JACKET</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--2">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--2"></div>
+                <div class="product-card__info product-card__info--2">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">LAKE USED DUNE DENIM</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--3">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--3"></div>
+                <div class="product-card__info product-card__info--3">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">HEAVY FLIGHT SHEARLING HOODIE BLACK</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">26 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--4">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--4"></div>
+                <div class="product-card__info product-card__info--4">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">SAARLAND ZIPPER USED GREY</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">21 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Ряд 2 -->
+            <div class="product-card product-card--5">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--5"></div>
+                <div class="product-card__info product-card__info--5">
+                    <span class="product-card__brand">Alice Hollywood</span>
+                    <span class="product-card__name">MOTO COUTURE GLOVES BLACKOUT</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">10 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--6">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--6"></div>
+                <div class="product-card__info product-card__info--6">
+                    <span class="product-card__brand">Racer Worldwide</span>
+                    <span class="product-card__name">SLIM LOW-WAIST DENIM</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--7">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--7"></div>
+                <div class="product-card__info product-card__info--7">
+                    <span class="product-card__brand">Jaded London</span>
+                    <span class="product-card__name">COLOSSOUS PANTS CAMO SUIT BAGGY FIT</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">9 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--8">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--8"></div>
+                <div class="product-card__info product-card__info--8">
+                    <span class="product-card__brand">Alice Hollywood</span>
+                    <span class="product-card__name">SWAROWSKI BELT CLASSIC</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Ряд 3 -->
+            <div class="product-card product-card--9">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--9"></div>
+                <div class="product-card__info product-card__info--9">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">JAPANESE DUST SELVEDGE TRUCKER JACKET</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--10">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--10"></div>
+                <div class="product-card__info product-card__info--10">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">LAKE USED DUNE DENIM</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--11">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--11"></div>
+                <div class="product-card__info product-card__info--11">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">HEAVY FLIGHT SHEARLING HOODIE BLACK</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">26 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--12">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--12"></div>
+                <div class="product-card__info product-card__info--12">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">SAARLAND ZIPPER USED GREY</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">21 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-block">
+            <div class="social-block__button">
+                <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="social-block__title">СОЦИАЛЬНЫЕ СЕТИ</span>
+            <span class="social-block__link">Telegram</span>
+            <span class="social-block__link">Instagram</span>
+            <span class="social-block__link">VK</span>
+        </div>
+
+        <!-- Полезная информация -->
+        <div class="info-block">
+            <div class="info-block__button">
+                <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="info-block__title">ПОЛЕЗНАЯ ИНФОРМАЦИЯ</span>
+            <span class="info-block__link">Обо мне</span>
+            <span class="info-block__link">Отзывы</span>
+            <span class="info-block__link">Вопросы</span>
+            <span class="info-block__link">Публичная оферта</span>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Дополнительный JS для splash-экрана -->
+    <script>
+        (function() {
+            'use strict';
+
+            const splashOverlay = document.getElementById('splashOverlay');
+            const splashButton = document.getElementById('splashButton');
+            const mainSite = document.getElementById('mainSite');
+            let isTransitioning = false;
+            let isSplashActive = true;
+
+            // Функция перехода к основному сайту
+            function enterMainSite(trigger) {
+                if (isTransitioning || !isSplashActive) return;
+                isTransitioning = true;
+                isSplashActive = false;
+
+                // Показываем основной сайт
+                mainSite.classList.add('home--visible');
+
+                // Запускаем анимацию исчезновения splash
+                splashOverlay.classList.add('splash-overlay--hidden');
+
+                // После завершения анимации полностью удаляем splash из DOM
+                setTimeout(function() {
+                    splashOverlay.classList.add('splash-overlay--removed');
+                    // Восстанавливаем скролл body
+                    document.body.style.overflow = '';
+                    // Запускаем автопрокрутку карусели (если она есть в script.js)
+                    if (typeof startAutoPlay === 'function') {
+                        startAutoPlay();
+                    }
+                    // Передаём управление основному скрипту
+                    if (typeof scaleHome === 'function') {
+                        scaleHome();
+                    }
+                }, 800);
+            }
+
+            // 1. Клик по кнопке
+            splashButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                enterMainSite('click');
+            });
+
+            // 2. Прокрутка колесиком мыши (вниз)
+            document.addEventListener('wheel', function(e) {
+                if (!isSplashActive) return;
+                if (e.deltaY > 0) {
+                    // Прокрутка вниз
+                    enterMainSite('scroll');
+                }
+            }, { passive: true });
+
+            // 3. Касание на мобильных (свайп вниз)
+            let touchStartY = 0;
+            document.addEventListener('touchstart', function(e) {
+                if (!isSplashActive) return;
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+
+            document.addEventListener('touchmove', function(e) {
+                if (!isSplashActive) return;
+                const touchEndY = e.touches[0].clientY;
+                const deltaY = touchEndY - touchStartY;
+                // Если свайп вниз (deltaY > 0) и достаточно длинный
+                if (deltaY > 50) {
+                    enterMainSite('swipe');
+                }
+            }, { passive: true });
+
+            // 4. Клавиша Enter или Space на кнопке
+            splashButton.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    enterMainSite('keyboard');
+                }
+            });
+
+            // Блокируем скролл страницы, пока активен splash
+            document.body.style.overflow = 'hidden';
+
+            // Если пользователь пытается скроллить, но splash ещё активен — ничего не делаем,
+            // но wheel-событие уже обработано выше.
+
+            // Масштабирование splash под ширину окна (аналогично .home)
+            function scaleSplash() {
+                const splash = document.getElementById('splashContainer');
+                if (!splash) return;
+                const windowWidth = window.innerWidth;
+                const originalWidth = 1440;
+                let scale = windowWidth / originalWidth;
+                if (scale < 1) scale = 1;
+                // Применяем масштаб через CSS-переменную или transform
+                splash.style.transform = 'scale(' + scale + ')';
+                splash.style.transformOrigin = 'center center';
+            }
+
+            scaleSplash();
+            window.addEventListener('resize', scaleSplash);
+
+            // Синхронизируем масштабирование с основным сайтом при переходе
+            const originalScaleHome = window.scaleHome;
+            window.scaleHome = function() {
+                if (typeof originalScaleHome === 'function') {
+                    originalScaleHome();
+                }
+                scaleSplash();
+            };
+
+            // Принудительно запускаем скрипты карусели после загрузки
+            if (typeof buildTrack === 'function') {
+                // Если скрипт уже загружен, перестраиваем трек
+                setTimeout(function() {
+                    if (typeof buildTrack === 'function') {
+                        buildTrack();
+                    }
+                }, 100);
+            }
+
+            // Если основной скрипт не загрузился, подгружаем вручную
+            if (typeof document.addEventListener === 'function') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Основной скрипт уже должен был запуститься
+                    // Но если нет — дублируем инициализацию
+                    if (typeof initCarousel === 'undefined') {
+                        // Инициализируем карусель вручную
+                        const images = [
+                            './static/images/1.png',
+                            './static/images/2.png',
+                            './static/images/3.png'
+                        ];
+                        const extendedImages = [images[2], images[0], images[1], images[2], images[0]];
+                        const track = document.getElementById('carouselTrack');
+                        if (track) {
+                            track.innerHTML = '';
+                            extendedImages.forEach(function(src) {
+                                const slide = document.createElement('div');
+                                slide.className = 'carousel__item';
+                                slide.style.backgroundImage = 'url(' + src + ')';
+                                track.appendChild(slide);
+                            });
+                        }
+                    }
+                });
+            }
+
+            // Экспортируем функцию для использования из основного скрипта
+            window.enterMainSite = enterMainSite;
+
+        })();
+    </script>
+
 </body>
 </html>

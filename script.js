@@ -66,50 +66,145 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Карусель ---
+    // --- Новая бесконечная карусель с панорамным эффектом ---
     const images = [
         './static/images/1.png',
         './static/images/2.png',
         './static/images/3.png'
     ];
-    let currentSlide = 0;
-    const slideElement = document.getElementById('carouselSlide');
-    const indicators = document.querySelectorAll('.carousel__indicator');
 
-    function updateCarousel(index) {
-        slideElement.style.backgroundImage = `url(${images[index]})`;
-        indicators.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('carousel__indicator--active');
+    // Расширенный массив для бесконечной прокрутки (порядок: 3, 1, 2, 3, 1)
+    const extendedImages = [images[2], images[0], images[1], images[2], images[0]];
+    const track = document.getElementById('carouselTrack');
+    const indicators = document.querySelectorAll('.carousel__indicator');
+    let currentTrackIndex = 1;      // индекс в extendedImages, который сейчас в центре (соответствует realIndex=0)
+    let realIndex = 0;              // 0..2 – реальный индекс активного слайда
+    let isTransitioning = false;
+    let autoInterval = null;
+
+    // Создание слайдов в треке
+    function buildTrack() {
+        track.innerHTML = '';
+        extendedImages.forEach((src, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel__item';
+            slide.style.backgroundImage = `url(${src})`;
+            track.appendChild(slide);
+        });
+        updateTrackPosition(false);
+    }
+    buildTrack();
+
+    // Обновление позиции трека (без анимации или с анимацией)
+    function updateTrackPosition(animate = true) {
+        if (!animate) {
+            track.style.transition = 'none';
+        }
+        const offset = -currentTrackIndex * 1440; // каждый слайд шириной 1440px
+        track.style.transform = `translateX(${offset}px)`;
+        if (!animate) {
+            // принудительный reflow, чтобы transition не включился обратно
+            track.offsetHeight;
+            track.style.transition = 'transform 0.5s ease';
+        }
+    }
+
+    // Коррекция при достижении клонов (бесконечность)
+    function correctInfinite() {
+        if (currentTrackIndex === 0) {
+            // перескочили на клон последнего (индекс 0) -> реальный последний (индекс 3)
+            currentTrackIndex = 3;
+            realIndex = 2;
+            updateTrackPosition(false);
+            updateIndicators();
+        } else if (currentTrackIndex === 4) {
+            // перескочили на клон первого (индекс 4) -> реальный первый (индекс 1)
+            currentTrackIndex = 1;
+            realIndex = 0;
+            updateTrackPosition(false);
+            updateIndicators();
+        }
+    }
+
+    // Обновление активного индикатора
+    function updateIndicators() {
+        indicators.forEach((ind, i) => {
+            if (i === realIndex) {
+                ind.classList.add('carousel__indicator--active');
             } else {
-                dot.classList.remove('carousel__indicator--active');
+                ind.classList.remove('carousel__indicator--active');
             }
         });
     }
 
-    document.getElementById('arrleft').addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + images.length) % images.length;
-        updateCarousel(currentSlide);
-    });
+    // Переключение на определённый реальный слайд (с анимацией)
+    function goToSlide(newRealIndex) {
+        if (isTransitioning) return;
+        if (newRealIndex === realIndex) return;
 
-    document.getElementById('arrright').addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % images.length;
-        updateCarousel(currentSlide);
-    });
+        isTransitioning = true;
+        const delta = newRealIndex - realIndex;
+        let newTrackIndex = currentTrackIndex + delta;
+        // Если перескок через границу (например, с 2 на 0), корректируем
+        if (newTrackIndex < 0) newTrackIndex += 3;
+        if (newTrackIndex > 4) newTrackIndex -= 3;
 
-    indicators.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentSlide = index;
-            updateCarousel(currentSlide);
+        currentTrackIndex = newTrackIndex;
+        realIndex = newRealIndex;
+        updateTrackPosition(true);
+        updateIndicators();
+
+        // После завершения анимации проверяем клоны
+        setTimeout(() => {
+            isTransitioning = false;
+            correctInfinite();
+        }, 500);
+    }
+
+    // Следующий слайд
+    function nextSlide() {
+        if (isTransitioning) return;
+        let newReal = (realIndex + 1) % 3;
+        goToSlide(newReal);
+    }
+
+    // Предыдущий слайд
+    function prevSlide() {
+        if (isTransitioning) return;
+        let newReal = (realIndex - 1 + 3) % 3;
+        goToSlide(newReal);
+    }
+
+    // Обработчики стрелок
+    document.getElementById('arrleft').addEventListener('click', () => prevSlide());
+    document.getElementById('arrright').addEventListener('click', () => nextSlide());
+
+    // Обработчики индикаторов
+    indicators.forEach((ind, idx) => {
+        ind.addEventListener('click', () => {
+            if (idx !== realIndex && !isTransitioning) {
+                goToSlide(idx);
+            }
         });
     });
 
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % images.length;
-        updateCarousel(currentSlide);
-    }, 5000);
+    // Автоматическое переключение каждые 5 секунд
+    function startAutoPlay() {
+        if (autoInterval) clearInterval(autoInterval);
+        autoInterval = setInterval(() => {
+            if (!isTransitioning) {
+                nextSlide();
+            }
+        }, 5000);
+    }
+    startAutoPlay();
 
-    updateCarousel(0);
+    // Остановка автопрокрутки при наведении на карусель (опционально)
+    const carouselContainer = document.querySelector('.carousel');
+    carouselContainer.addEventListener('mouseenter', () => {
+        if (autoInterval) clearInterval(autoInterval);
+    });
+    carouselContainer.addEventListener('mouseleave', startAutoPlay);
 
     // --- Клик по карточкам товаров ---
     document.querySelectorAll('.product-card').forEach(card => {

@@ -88,19 +88,22 @@
             </div>
         </div>
 
-        <!-- Карусель -->
+        <!-- Карусель (новая бесшовная) -->
         <div class="carousel">
             <div class="carousel__background"></div>
-            <div class="carousel__slide" id="carouselSlide"></div>
 
-            <!-- Новая левая стрелка (модуль arrleft) -->
+            <!-- Контейнер для бесконечного трека -->
+            <div class="carousel__track-container">
+                <div class="carousel__track" id="carouselTrack"></div>
+            </div>
+
+            <!-- Левая стрелка -->
             <div class="arrleft" id="arrleft">
                 <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_ii_46_11_left)">
                         <rect width="87" height="153" rx="30" fill="white" fill-opacity="0.15" />
                         <g transform="translate(87, 0) scale(-1, 1)">
-                            <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)"
-                                  stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                            <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)" stroke="white" stroke-opacity="0.5" stroke-width="2" />
                             <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2" />
                         </g>
                     </g>
@@ -125,13 +128,12 @@
                 </svg>
             </div>
 
-            <!-- Новая правая стрелка (модуль arrright) -->
+            <!-- Правая стрелка -->
             <div class="arrright" id="arrright">
                 <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_ii_46_11_right)">
                         <rect width="87" height="153" rx="30" transform="matrix(-1 0 0 1 87 0)" fill="white" fill-opacity="0.15" />
-                        <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)"
-                              stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                        <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)" stroke="white" stroke-opacity="0.5" stroke-width="2" />
                         <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2" />
                     </g>
                     <defs>
@@ -155,6 +157,7 @@
                 </svg>
             </div>
 
+            <!-- Индикаторы -->
             <div class="carousel__indicators" id="carouselIndicators">
                 <div class="carousel__indicator carousel__indicator--active"></div>
                 <div class="carousel__indicator"></div>
