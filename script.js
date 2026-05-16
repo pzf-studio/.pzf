@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const extendedImages = [images[2], images[0], images[1], images[2], images[0]];
     const track = document.getElementById('carouselTrack');
     const indicators = document.querySelectorAll('.carousel__indicator');
-    let currentTrackIndex = 1;      // индекс в extendedImages, который сейчас в центре (соответствует realIndex=0)
-    let realIndex = 0;              // 0..2 – реальный индекс активного слайда
+    let currentTrackIndex = 2;      // индекс в extendedImages, который сейчас в центре (соответствует realIndex=0)
+    let realIndex = 1;              // 0..2 – реальный индекс активного слайда
     let isTransitioning = false;
     let autoInterval = null;
 
@@ -127,15 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Обновление активного индикатора
-    function updateIndicators() {
-        indicators.forEach((ind, i) => {
-            if (i === realIndex) {
-                ind.classList.add('carousel__indicator--active');
-            } else {
-                ind.classList.remove('carousel__indicator--active');
-            }
-        });
-    }
+
 
     // Переключение на определённый реальный слайд (с анимацией)
     function goToSlide(newRealIndex) {
