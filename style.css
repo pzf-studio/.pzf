@@ -1,3 +1,4 @@
+/* style.css */
 @font-face {
     font-family: 'SF Compact Display';
     src: url('fonts/SF-Compact-Rounded-Regular.otf') format('opentype');
@@ -13,20 +14,30 @@
     font-family: 'SF Compact Display', sans-serif;
 }
 
-body {
-    background: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+html, body {
+    width: 100%;
     min-height: 100vh;
+    background: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;      /* позволяет скроллить по горизонтали, если контент шире окна */
+    overflow-y: auto;      /* вертикальный скролл при необходимости */
+    display: flex;
+    justify-content: flex-start;  /* контент прижат к левому краю */
+    align-items: flex-start;
 }
 
 .home {
     position: relative;
-    width: 1440px;
-    height: 2956px;
+    width: 1440px;           /* исходная ширина макета */
+    height: 2956px;          /* исходная высота макета */
     background: #FFFFFF;
+    transform-origin: top left;  /* масштабирование от левого верхнего угла */
     overflow: hidden;
+    flex-shrink: 0;          /* запрещаем сжатие при флексах */
 }
 
 /* Логотип слева (исходный) */
@@ -219,7 +230,7 @@ body {
     position: absolute;
     width: 180px;
     height: 49px;
-    right: 171px;
+    right: 40px;
     top: 23px;
     background: rgba(255, 255, 255, 0.15);
     box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -338,7 +349,7 @@ body {
     background: #CFCFCF;
 }
 
-/* Заголовок НОВИНКИ и кнопка СМОТРЕТЬ ВСЕ (горизонтальная) */
+/* Заголовок НОВИНКИ и кнопка СМОТРЕТЬ ВСЕ */
 .section-title {
     position: absolute;
     width: 149px;
@@ -516,7 +527,7 @@ body {
 .product-card__image--11 { background-image: url(IMG_9716.jpg); }
 .product-card__image--12 { background-image: url(photo_2025-12-02_00-52-21.jpg); }
 
-/* Социальные сети (кнопка СМОТРЕТЬ ВСЕ горизонтальная) */
+/* Социальные сети */
 .social-block {
     display: flex;
     flex-direction: column;
@@ -569,7 +580,7 @@ body {
     cursor: pointer;
 }
 
-/* Полезная информация (кнопка СМОТРЕТЬ ВСЕ горизонтальная) */
+/* Полезная информация */
 .info-block {
     display: flex;
     flex-direction: column;

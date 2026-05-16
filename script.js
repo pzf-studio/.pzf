@@ -1,4 +1,29 @@
+// script.js
 document.addEventListener('DOMContentLoaded', function() {
+    const home = document.querySelector('.home');
+    let currentScale = 1;
+
+    // --- Масштабирование .home на всю ширину окна ---
+    function scaleHome() {
+        if (!home) return;
+        const windowWidth = window.innerWidth;
+        const originalWidth = 1440;
+        let scale = windowWidth / originalWidth;
+        if (scale < 1) scale = 1;
+        currentScale = scale;
+        home.style.transform = `scale(${scale})`;
+        home.style.transformOrigin = 'top left';
+    }
+
+    scaleHome();
+    window.addEventListener('resize', function() {
+        scaleHome();
+        // После изменения масштаба обновляем позицию подсветки для активного пункта
+        const activeItem = document.querySelector('.menu__item[data-menu="novelties"]') ||
+                           document.querySelector('.menu__item--active');
+        if (activeItem) moveHighlight(activeItem);
+    });
+
     // --- Меню и выпадающие списки ---
     const menuDefault = document.getElementById('menuDefault');
     const dropdownDesigners = document.getElementById('dropdownDesigners');
@@ -42,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- Карусель ---
-    // Обновлённый массив изображений
     const images = [
         './static/images/1.png',
         './static/images/2.png',
@@ -63,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Обработчики для стрелок arrleft / arrright
     document.getElementById('arrleft').addEventListener('click', () => {
         currentSlide = (currentSlide - 1 + images.length) % images.length;
         updateCarousel(currentSlide);
@@ -81,13 +104,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Автопрокрутка
     setInterval(() => {
         currentSlide = (currentSlide + 1) % images.length;
         updateCarousel(currentSlide);
     }, 5000);
 
-    // Инициализация первой картинки
     updateCarousel(0);
 
     // --- Клик по карточкам товаров ---
@@ -99,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- Клик по кнопке "СМОТРЕТЬ ВСЕ" (заголовок) ---
+    // --- Клик по кнопке "СМОТРЕТЬ ВСЕ" ---
     document.getElementById('watchAllBtn').addEventListener('click', function() {
         alert('Открытие каталога...');
     });
@@ -120,44 +141,54 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(`Открытие страницы: ${this.textContent}`);
         });
     });
-});
 
-// --- Выделение пунктов меню (прямоугольник) ---
-const highlightRect = document.getElementById('highlightRect');
-const menuItems = document.querySelectorAll('.menu__item');
+    // --- Выделение пунктов меню (прямоугольник) с учётом масштаба ---
+    const highlightRect = document.getElementById('highlightRect');
+    const menuItems = document.querySelectorAll('.menu__item');
 
-function moveHighlight(targetItem) {
-    if (!targetItem) return;
-    const rect = targetItem.getBoundingClientRect();
-    const menuRect = document.getElementById('menuDefault').getBoundingClientRect();
-    
-    const left = rect.left - menuRect.left;
-    const top = rect.top - menuRect.top;
-    
-    highlightRect.style.left = (left - 10) + 'px';
-    highlightRect.style.top = (top - 8) + 'px';
-    highlightRect.style.width = rect.width + 20 + 'px';
-}
+    function moveHighlight(targetItem) {
+        if (!targetItem || !menuDefault) return;
 
-setTimeout(() => {
-    const firstItem = document.querySelector('.menu__item[data-menu="novelties"]');
-    if (firstItem) moveHighlight(firstItem);
-}, 100);
+        // Получаем клиентские прямоугольники
+        const menuRect = menuDefault.getBoundingClientRect();
+        const itemRect = targetItem.getBoundingClientRect();
 
-menuItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-        moveHighlight(this);
+        // Вычисляем смещение относительно меню в пикселях на экране,
+        // затем делим на текущий масштаб, чтобы получить координаты в исходной системе (до масштабирования)
+        const left = (itemRect.left - menuRect.left) / currentScale;
+        const top = (itemRect.top - menuRect.top) / currentScale;
+        const width = itemRect.width / currentScale;
+
+        // Применяем позиционирование (добавляем отступы для красивого внешнего вида)
+        highlightRect.style.left = (left - 10) + 'px';
+        highlightRect.style.top = (top - 8) + 'px';
+        highlightRect.style.width = (width + 20) + 'px';
+    }
+
+    // Устанавливаем начальную подсветку на "НОВИНКИ"
+    setTimeout(() => {
+        const defaultActive = document.querySelector('.menu__item[data-menu="novelties"]');
+        if (defaultActive) moveHighlight(defaultActive);
+    }, 100);
+
+    // Наведение мышью — перемещаем подсветку
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            moveHighlight(this);
+        });
     });
-});
 
-menuItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        moveHighlight(this);
+    // Клик — также перемещаем подсветку и оставляем её на выбранном пункте
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            moveHighlight(this);
+        });
     });
-});
 
-document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
-    item.addEventListener('click', function(e) {
-        setTimeout(() => moveHighlight(this), 50);
+    // Дополнительная синхронизация при открытии выпадающих меню
+    document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
+        item.addEventListener('click', function() {
+            setTimeout(() => moveHighlight(this), 50);
+        });
     });
 });
