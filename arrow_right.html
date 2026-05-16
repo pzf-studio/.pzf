@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG в HTML</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #2c2c2c; /* тёмный фон, чтобы были видны белые элементы */
+        }
+    </style>
+</head>
+<body>
+    <!-- Исходный SVG, встроенный напрямую -->
+    <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_ii_46_11)">
+            <rect width="87" height="153" rx="30" transform="matrix(-1 0 0 1 87 0)" fill="white" fill-opacity="0.15"/>
+            <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)" stroke="white" stroke-opacity="0.5" stroke-width="2"/>
+            <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2"/>
+        </g>
+        <defs>
+            <filter id="filter0_ii_46_11" x="0" y="-2" width="87" height="157" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="2"/>
+                <feGaussianBlur stdDeviation="5"/>
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_46_11"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="-2"/>
+                <feGaussianBlur stdDeviation="5"/>
+                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                <feBlend mode="normal" in2="effect1_innerShadow_46_11" result="effect2_innerShadow_46_11"/>
+            </filter>
+        </defs>
+    </svg>
+</body>
+</html>

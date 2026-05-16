@@ -1,0 +1,36 @@
+/* Правая стрелка */
+
+position: absolute;
+width: 87px;
+height: 153px;
+right: 40px;
+top: 293px;
+
+background: rgba(255, 255, 255, 0.15);
+box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
+border-radius: 30px;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Line 1 */
+
+position: absolute;
+width: 64.35px;
+height: 0px;
+left: 21.29px;
+top: 30px;
+
+border: 2px solid rgba(255, 255, 255, 0.5);
+transform: matrix(0.7, 0.71, 0.71, -0.7, 0, 0);
+
+
+/* Line 2 */
+
+position: absolute;
+width: 65.41px;
+height: 1.37px;
+left: 20.29px;
+top: 75.74px;
+
+border: 2px solid rgba(255, 255, 255, 0.5);
+transform: rotate(134.37deg);

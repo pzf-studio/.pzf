@@ -1,377 +1,163 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-  gsap.registerPlugin(ScrollTrigger);
-
-
-  const cursor = document.querySelector('.cursor');
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-
-
-  const typewriterElement = document.querySelector('.typewriter');
-  if (typewriterElement) {
-    const fullText = typewriterElement.textContent;
-    typewriterElement.textContent = '';
-    typewriterElement.style.visibility = 'visible';
-    
-    let i = 0;
-    const typingSpeed = 50;
-
-    function typeWriter() {
-      if (i < fullText.length) {
-        typewriterElement.textContent += fullText.charAt(i);
-        i++;
-        setTimeout(typeWriter, typingSpeed);
-      } else {
-        typewriterElement.classList.add('finished-typing');
-      }
-    }
-
-    setTimeout(typeWriter, 500);
-  }
-
-
-  const button = document.querySelector('.hero-button');
-  if (button) {
-    button.addEventListener('mouseenter', () => {
-      gsap.to(button, { 
-        scale: 1.05,
-        duration: 0.3
-      });
-    });
-    button.addEventListener('mouseleave', () => {
-      gsap.to(button, { 
-        scale: 1,
-        duration: 0.3
-      });
-    });
-  }
-
-
-  if (document.getElementById('hero-canvas')) {
-    initThreeJS();
-  }
-
-
-  gsap.to(".spell", {
-    scrollTrigger: {
-      trigger: ".spell",
-      start: "top 70%",
-      toggleActions: "play none none none"
-    },
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    ease: "power2.out"
-  });
-
-
-  const dust = document.querySelector('.magic-dust');
-  document.addEventListener('mousemove', (e) => {
-    dust.style.backgroundPosition = `${e.clientX * 0.05}px ${e.clientY * 0.05}px`;
-  });
-  initScrollAnimations();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const spellSection = document.querySelector('.spell');
-  
-  if (spellSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    observer.observe(spellSection);
-  }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const offerButton = document.querySelector('.cta-button');
-  if (offerButton) {
-    offerButton.addEventListener('mouseenter', () => {
-      gsap.to(offerButton, { scale: 1.05, duration: 0.3 });
-    });
-    offerButton.addEventListener('mouseleave', () => {
-      gsap.to(offerButton, { scale: 1, duration: 0.3 });
-    });
-  }
-
-
-  gsap.utils.toArray('.step').forEach((step, i) => {
-    gsap.from(step, {
-      scrollTrigger: {
-        trigger: '.fast-magic-offer',
-        start: "top 70%",
-        toggleActions: "play none none none"
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      delay: i * 0.2,
-      ease: "power2.out"
-    });
-  });
-});
-
 document.addEventListener('DOMContentLoaded', function() {
+    // --- Меню и выпадающие списки ---
+    const menuDefault = document.getElementById('menuDefault');
+    const dropdownDesigners = document.getElementById('dropdownDesigners');
+    const dropdownNovelties = document.getElementById('dropdownNovelties');
+    const sideButton = document.getElementById('sideButton');
 
-  const messengerBtns = document.querySelectorAll('.messenger-btn');
-  let selectedMessenger = null;
-  
-  messengerBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      messengerBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      selectedMessenger = this.dataset.messenger;
+    function hideAllDropdowns() {
+        dropdownDesigners.style.display = 'none';
+        dropdownNovelties.style.display = 'none';
+        menuDefault.style.display = 'flex';
+        sideButton.classList.remove('side-button--novelties');
+    }
+
+    document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const menuType = e.target.dataset.menu;
+            hideAllDropdowns();
+            if (menuType === 'designers') {
+                dropdownDesigners.style.display = 'block';
+                menuDefault.style.display = 'none';
+            } else if (menuType === 'novelties') {
+                dropdownNovelties.style.display = 'block';
+                menuDefault.style.display = 'none';
+                sideButton.classList.add('side-button--novelties');
+            }
+        });
     });
-  });
-  
 
-  document.getElementById('send-messenger').addEventListener('click', function() {
-    const contact = document.getElementById('user-contact').value.trim();
-    const description = document.getElementById('project-description').value.trim();
-    
-    if (!contact) {
-      alert('Пожалуйста, укажите ваш Telegram или номер телефона');
-      return;
-    }
-    
-    if (!selectedMessenger) {
-      alert('Пожалуйста, выберите мессенджер');
-      return;
-    }
-    
-    sendToTelegram({
-      type: 'messenger',
-      messenger: selectedMessenger,
-      contact: contact,
-      description: description
+    document.querySelectorAll('.menu__item:not([data-menu])').forEach(item => {
+        item.addEventListener('click', hideAllDropdowns);
     });
-  });
-  
 
-  document.getElementById('request-call').addEventListener('click', function() {
-    const phone = document.getElementById('phone-number').value.trim();
-    const time = document.getElementById('call-time').value;
-    const description = document.getElementById('call-description').value.trim();
-    
-    if (!phone) {
-      alert('Пожалуйста, укажите ваш номер телефона');
-      return;
-    }
-    
-    if (!time) {
-      alert('Пожалуйста, выберите удобное время для звонка');
-      return;
-    }
-    
-    sendToTelegram({
-      type: 'call',
-      phone: phone,
-      time: time,
-      description: description
+    dropdownDesigners.addEventListener('click', (e) => {
+        if (e.target.tagName === 'SPAN') hideAllDropdowns();
     });
-  });
-  
 
-  function sendToTelegram(data) {
-    const botToken = '7892942632:AAHmrok9tG1-Fe0br4tg1u9o2LaLUYyeVIw';
-    const chatId = '743619189';
-    
-    let message = 'Новая заявка:\n';
-    
-    if (data.type === 'messenger') {
-      message += `Тип: Через мессенджер\n`;
-      message += `Мессенджер: ${data.messenger}\n`;
-      message += `Контакт: ${data.contact}\n`;
-      message += `Описание: ${data.description || 'Не указано'}\n`;
-
-      if (window.location.hash === '#contacts' && document.getElementById('speedWizardSection')?.classList.contains('hidden') === false) {
-        message += `Промокод: SpeedWizard\n`;
-      }
-    } else {
-      message += `Тип: Заказ звонка\n`;
-      message += `Телефон: ${data.phone}\n`;
-      message += `Время: ${data.time}\n`;
-      message += `Описание: ${data.description || 'Не указано'}\n`;
-
-      if (window.location.hash === '#contacts' && document.getElementById('speedWizardSection')?.classList.contains('hidden') === false) {
-        message += `Промокод: SpeedWizard\n`;
-      }
-    }
-    
-
-    const button = data.type === 'messenger' 
-      ? document.getElementById('send-messenger')
-      : document.getElementById('request-call');
-    
-    const originalText = button.innerHTML;
-    button.innerHTML = 'Отправка... <i class="fas fa-spinner fa-spin"></i>';
-    button.disabled = true;
-    
-
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
-
-      if (data.type === 'messenger') {
-        document.getElementById('user-contact').value = '';
-        document.getElementById('project-description').value = '';
-        messengerBtns.forEach(b => b.classList.remove('active'));
-      } else {
-        document.getElementById('phone-number').value = '';
-        document.getElementById('call-time').value = '';
-        document.getElementById('call-description').value = '';
-      }
-    })
-    .catch(error => {
-      console.error('Ошибка:', error);
-      alert('Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.');
-    })
-    .finally(() => {
-      button.innerHTML = originalText;
-      button.disabled = false;
-    });
-  }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.getElementById('consultationPopup');
-  const popupTrigger = popup.querySelector('.popup-trigger');
-  const closePopup = popup.querySelector('.close-popup');
-  
-
-  setTimeout(() => {
-    popup.classList.add('active');
-  }, 10000); 
-  
-
-  popupTrigger.addEventListener('click', () => {
-    popup.classList.toggle('active');
-  });
-  
-  closePopup.addEventListener('click', (e) => {
-    e.stopPropagation();
-    popup.classList.remove('active');
-  });
-  
-
-  document.addEventListener('click', (e) => {
-    if (!popup.contains(e.target)) {
-      popup.classList.remove('active');
-    }
-  });
-  
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      popup.classList.remove('active');
-    }
-  });
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const speedWizardBtn = document.getElementById('speedWizardBtn');
-  const speedWizardSection = document.getElementById('speedWizardSection');
-  
-  if (speedWizardBtn && speedWizardSection) {
-    speedWizardBtn.addEventListener('click', () => {
-
-      document.querySelector('#contacts').scrollIntoView({
-        behavior: 'smooth'
-      });
-      
-
-      setTimeout(() => {
-        speedWizardSection.classList.remove('hidden');
-        speedWizardSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 800);
-    });
-  }
-});
-
-
-function initThreeJS() {
-
-}
-
-
-function initScrollAnimations() {
-
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const faqItems = document.querySelectorAll('.faq-item');
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    
-    question.addEventListener('click', () => {
-
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
+    dropdownNovelties.addEventListener('click', (e) => {
+        if (e.target.tagName === 'SPAN' && !e.target.classList.contains('search-block__placeholder')) {
+            hideAllDropdowns();
         }
-      });
-      
-
-      item.classList.toggle('active');
     });
-  });
+
+    // --- Карусель ---
+    // Обновлённый массив изображений
+    const images = [
+        './static/images/1.png',
+        './static/images/2.png',
+        './static/images/3.png'
+    ];
+    let currentSlide = 0;
+    const slideElement = document.getElementById('carouselSlide');
+    const indicators = document.querySelectorAll('.carousel__indicator');
+
+    function updateCarousel(index) {
+        slideElement.style.backgroundImage = `url(${images[index]})`;
+        indicators.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('carousel__indicator--active');
+            } else {
+                dot.classList.remove('carousel__indicator--active');
+            }
+        });
+    }
+
+    // Обработчики для стрелок arrleft / arrright
+    document.getElementById('arrleft').addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + images.length) % images.length;
+        updateCarousel(currentSlide);
+    });
+
+    document.getElementById('arrright').addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % images.length;
+        updateCarousel(currentSlide);
+    });
+
+    indicators.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateCarousel(currentSlide);
+        });
+    });
+
+    // Автопрокрутка
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % images.length;
+        updateCarousel(currentSlide);
+    }, 5000);
+
+    // Инициализация первой картинки
+    updateCarousel(0);
+
+    // --- Клик по карточкам товаров ---
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const brand = this.querySelector('.product-card__brand').textContent;
+            const name = this.querySelector('.product-card__name').textContent;
+            alert(`Товар: ${brand} — ${name}`);
+        });
+    });
+
+    // --- Клик по кнопке "СМОТРЕТЬ ВСЕ" (заголовок) ---
+    document.getElementById('watchAllBtn').addEventListener('click', function() {
+        alert('Открытие каталога...');
+    });
+
+    // --- Клик по элементам меню (для демонстрации) ---
+    document.querySelectorAll('.menu__item, .menu-dropdown__item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            if (this.dataset.menu) return;
+            e.preventDefault();
+            alert(`Переход в раздел: ${this.textContent.trim()}`);
+        });
+    });
+
+    // --- Клик по ссылкам в футере ---
+    document.querySelectorAll('.social-block__link, .info-block__link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert(`Открытие страницы: ${this.textContent}`);
+        });
+    });
 });
 
-const privacyOverlay = document.getElementById('privacyOverlay');
-const privacyAccept = document.getElementById('privacyAccept');
-const privacyDecline = document.getElementById('privacyDecline');
+// --- Выделение пунктов меню (прямоугольник) ---
+const highlightRect = document.getElementById('highlightRect');
+const menuItems = document.querySelectorAll('.menu__item');
 
-function checkPrivacyAgreement() {
-  if (!localStorage.getItem('privacyAgreed')) {
-    setTimeout(() => {
-      privacyOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden'; 
-    }, 1000);
-  }
+function moveHighlight(targetItem) {
+    if (!targetItem) return;
+    const rect = targetItem.getBoundingClientRect();
+    const menuRect = document.getElementById('menuDefault').getBoundingClientRect();
+    
+    const left = rect.left - menuRect.left;
+    const top = rect.top - menuRect.top;
+    
+    highlightRect.style.left = (left - 10) + 'px';
+    highlightRect.style.top = (top - 8) + 'px';
+    highlightRect.style.width = rect.width + 20 + 'px';
 }
 
-function setPrivacyAgreement(agreed) {
-  localStorage.setItem('privacyAgreed', agreed);
-  privacyOverlay.classList.remove('active');
-  document.body.style.overflow = ''; 
-  
-  if (agreed === 'false') {
+setTimeout(() => {
+    const firstItem = document.querySelector('.menu__item[data-menu="novelties"]');
+    if (firstItem) moveHighlight(firstItem);
+}, 100);
 
-    console.log('Пользователь не согласился с условиями');
-  }
-}
+menuItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+        moveHighlight(this);
+    });
+});
 
-if (privacyAccept && privacyDecline) {
-  privacyAccept.addEventListener('click', () => setPrivacyAgreement('true'));
-  privacyDecline.addEventListener('click', () => setPrivacyAgreement('false'));
-}
+menuItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        moveHighlight(this);
+    });
+});
 
-
-checkPrivacyAgreement();
-
+document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
+    item.addEventListener('click', function(e) {
+        setTimeout(() => moveHighlight(this), 50);
+    });
+});

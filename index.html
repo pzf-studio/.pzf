@@ -1,442 +1,385 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Студия цифровой магии .pzf — превращаем ваши идеи в цифровую реальность">
-  <title>.pzf — Студия цифровой магии</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anton Shell</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="magic-dust" ></div> 
-  
-  <div class="cursor"></div>
-  
-  <header>
-    <div class="container">
-        <nav>
-            <a href="#" class="logo">.pzf</a>
-            <div class="nav-links">
-                <a href="#about">О нас</a>
-                <a href="#projects">Проекты</a>
-                <a href="#services">Услуги</a>
-                <a href="#contacts">Контакты</a>
-            </div>
-        </nav>
-    </div>
-  </header>
+    <div class="home">
 
-  <main>
-    <section class="hero">
-        <div class="hero-content">
-        <h1 class="hero-title">
-            <span class="magic-text">Мы — digital-маги</span><br> 
-            <span class="typewriter">Ваши идеи станут реальностью</span>
-        </h1>
-        <div class="hero-cta">
-          <a href="about.html" class="magic-button">
-            <i class="fas fa-wand-magic-sparkle"></i> Не знаете, что вам нужно? Мы поможем!
-          </a>
-        </div>
-        <div class="hero-canvas" id="hero-canvas"></div>
-    </section>
+        <!-- Логотип слева (исходный) -->
+        <div class="logo"></div>
 
+        <!-- Логотип справа (новый) -->
+        <div class="logo logo--right"></div>
 
-    <section class="about" id="about">
-      <div class="container">
-        <h2>Студия цифровой магии</h2>
-        <p>Мы создаем уникальные цифровые продукты на стыке искусства и технологий. Наш подход сочетает в себе магию творчества и точность программирования.</p>
-      </div>
-    </section>
-
-    <section class="spell">
-        <div class="container">
-            <p>// Заклинание .pzf</p>
-            <div class="code-spell">
-                <code>if (idea.isCool()) {</code>
-                <code>  makeReal(idea);</code>
-                <code>} else {</code>
-                <code>  addMagic(idea);</code>
-                <code>}</code>
-            </div>
-        </div>
-    </section>
-
-    <section class="services" id="services">
-      <div class="container">
-        <h2>Что мы умеем</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <i class="fas fa-code"></i>
-            <h3>Веб-разработка</h3>
-            <p>От лендингов до сложных веб-приложений - полный цикл создания</p>
-          </div>
-          <div class="service-card">
-            <i class="fas fa-mobile-alt"></i>
-            <h3>Мобильные приложения</h3>
-            <p>Кроссплатформенные и нативные приложения для iOS и Android</p>
-          </div>
-          <div class="service-card">
-            <i class="fas fa-users-cog"></i>
-            <h3>Настройка CRM-систем</h3>
-            <p>Оптимизируем работу с клиентами через гибкую адаптацию CRM под ваши процессы</p>
-          </div>
-          <div class="service-card">
-            <i class="fas fa-plug"></i>
-            <h3>Интеграции</h3>
-            <p>Связываем ваши системы и сервисы для бесперебойного обмена данными</p>
-          </div>
-          <div class="service-card">
-            <i class="fas fa-question-circle"></i>
-            <h3>Не уверены?</h3>
-            <p>Пройдите наш конструктор заказа и мы подберем идеальное решение</p>
-            <a href="about.html" class="service-link">Начать конструктор</a>
-          </div>
-          <div class="service-card">
-            <i class="fas fa-magic"></i>
-            <h3>Индивидуальные решения</h3>
-            <p>Реализуем любые digital-идеи под ключ</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="fast-magic-offer">
-      <div class="container">
-        <h2>🔮 Ускоренная магия</h2>
-        <p class="subtitle">Торопим магов — ваша выгода тает!</p>
-
-        <div class="magic-steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Бесплатный аудит ТЗ</h3>
-            <p>Проверим ваш документ на "магические уязвимости"</p>
-          </div>
-  
-          <div class="step-arrow">➔</div>
-  
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>Ребилд ТЗ 1000₽</h3>
-            <p>Совместно улучшим документ в течение дня</p>
-          </div>
-  
-          <div class="step-arrow">➔</div>
-  
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Персональная скидка</h3>
-            <p>До 20% на проект после согласования ТЗ</p>
-          </div>
-        </div>
-
-        <div class="discount-conditions">
-          <h4>Ваши условия:</h4>
-          <div class="condition">
-            <span class="condition-name">Бюджет проекта:</span>
-            <span class="condition-value">от 20 000₽</span>
-          </div>
-          <div class="condition">
-            <span class="condition-name">Сроки:</span>
-            <span class="condition-value">от 2 недель</span>
-         </div>
-          <div class="condition highlight">
-            <span class="condition-name">Макс. скидка:</span>
-            <span class="condition-value">20%</span>
-          </div>
-        </div>
-
-        <button class="cta-button pulse" id="speedWizardBtn">
-          Обсудить со специалистом
-        </button>
-      </div>
-    </section>
-
-
-
-    <section class="projects" id="projects">
-      <div class="container">
-        <h2>Наши недавние проекты</h2>
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('img/project-europ.png')"></div>
-            <div class="project-info">
-              <h3>Проект «Европейский»</h3>
-              <p>Сайт сети мини-отелей с нуля</p>
-              <a href="projects.html" class="project-link">Подробнее <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('img/project-iner.png')"></div>
-            <div class="project-info">
-              <h3>Проект «MA Furniture»</h3>
-              <p>Разработка оригинального веб-дизайна</p>
-              <a href="projects.html" class="project-link">Подробнее <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('img/project-parce.png')"></div>
-            <div class="project-info">
-              <h3>Проект «Виртуальный менеджер»</h3>
-              <p>Кросс-платформенная система автоматизированного парсинга данных</p>
-              <a href="projects.html" class="project-link">Подробнее <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="speed-wizard hidden" id="speedWizardSection">
-      <div class="container">
-        <h2>Ускорим заклинания! ⚡</h2>
-        <p>Мы готовы начать ваш проект прямо сейчас. Специалисты уже знают о вашем желании воплощения ваших идей и ждут вашей заявки!</p>
-        <button class="cta-button" onclick="location.href='#contacts'">
-          Оставить заявку
-        </button>
-      </div>
-    </section>
-
-    <section class="contacts" id="contacts">
-      <div class="container">
-        <h2>Давайте начнём?</h2>
-    
-        <div class="contact-options">
-          <div class="contact-option">
-            <h3>Связаться со специалистом</h3>
-            <div class="form-group">
-              <input type="text" id="user-contact" placeholder="Ваш Telegram или номер телефона" required>
-            </div>
-            <div class="messenger-buttons">
-              <button class="messenger-btn telegram" data-messenger="telegram">
-                <i class="fab fa-telegram"></i> Telegram
-              </button>
-              <button class="messenger-btn whatsapp" data-messenger="whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-              </button>
-              <button class="messenger-btn vk" data-messenger="vk">
-                <i class="fab fa-vk"></i> VK
-              </button>
-            </div>
-            <div class="form-group">
-              <textarea id="project-description" placeholder="Кратко опишите ваш проект"></textarea>
-            </div>
-            <button class="submit-button" id="send-messenger">Продолжим в мессенджере</button>
-          </div>
-      
-          <div class="divider">
-            <span>или</span>
-          </div>
-      
-          <div class="contact-option">
-            <h3>Заказать звонок</h3>
-            <div class="form-group">
-              <input type="tel" id="phone-number" placeholder="Ваш номер телефона" required>
-            </div>
-            <div class="form-group">
-              <select id="call-time">
-                <option value="" disabled selected>Удобное время для звонка</option>
-                <option value="11:00 - 13:00">11:00 - 13:00</option>
-                <option value="13:00 - 15:00">13:00 - 15:00</option>
-                <option value="15:00 - 17:00">15:00 - 17:00</option>
-                <option value="17:00 - 19:00">17:00 - 19:00</option>
-                <option value="19:00 - 20:00">19:00 - 20:00</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <textarea id="call-description" placeholder="Кратко опишите ваш проект"></textarea>
-            </div>
-            <button class="submit-button" id="request-call">Позвоните мне</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="faq">
-      <div class="container">
-        <h2>Часто задаваемые вопросы</h2>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Сколько стоит разработка проекта?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Стоимость зависит от сложности проекта, сроков и используемых технологий. После анализа вашего ТЗ мы предоставим точную оценку. Минимальный бюджет проекта - от 20 000 рублей.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Какие сроки разработки?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Сроки варьируются от 2 недель для простых лендингов до нескольких месяцев для сложных веб-приложений. После обсуждения проекта мы предоставим реалистичные сроки с поэтапным планом.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Какие технологии вы используете?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Мы работаем с современным стеком: React, Vue.js, Node.js, Python, Flutter, Swift, Kotlin и другими. Технологии подбираем индивидуально под каждый проект.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Предоставляете ли вы поддержку после запуска?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Да, мы предлагаем различные варианты поддержки: от разовых исправлений до полного сопровождения проекта с регулярными обновлениями.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>Как происходит процесс работы?</h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>1. Обсуждение проекта и составление ТЗ<br>
-               2. Дизайн и прототипирование<br>
-               3. Разработка<br>
-               4. Тестирование<br>
-               5. Запуск и поддержка</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question">
-                <h3>Можно ли изменить ТЗ в процессе работы?</h3>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                <p>Да, изменения возможны, но важно учитывать:<br>
-                - Критические изменения могут увеличить сроки проекта<br>
-                - После этапа прототипирования любые правки ТЗ оплачиваются отдельно</p>
+        <!-- Основное меню (свёрнутое) -->
+        <div class="menu--default" id="menuDefault">
+            <div class="menu__highlight-rectangle" id="highlightRect"></div>
+            <div class="menu__inner">
+                <span class="menu__item" data-menu="novelties">НОВИНКИ</span>
+                <span class="menu__item" data-menu="designers">ДИЗАЙНЕРЫ</span>
+                <span class="menu__item">МУЖСКОЕ</span>
+                <span class="menu__item">ЖЕНСКОЕ</span>
+                <span class="menu__item">СКИДКИ</span>
             </div>
         </div>
 
-        <div class="faq-item">
-            <div class="faq-question">
-                <h3>Какие условия оплаты?</h3>
-                <i class="fas fa-chevron-down"></i>
+        <!-- Выпадающее меню «ДИЗАЙНЕРЫ» -->
+        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--active">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
             </div>
-            <div class="faq-answer">
-                <p>Мы работаем по предоплате, чтобы гарантировать ответственное сотрудничество с обеих сторон.</p>
-
-                <p>Простые проекты (лендинги, небольшие сайты) — полная оплата перед началом работы.
-
-                Сложные проекты (многоэтапные, долгосрочные) — оплата частями по согласованному графику.</p>
-
-                <p>Это не формальность, а взаимное уважение к труду и времени. Конкретные условия готовы обсудить</p>
+            <div class="designers-grid">
+                <div class="designers-col">
+                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
+                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
+                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
+                    <span>Guidi</span>
+                </div>
+                <div class="designers-col">
+                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
+                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
+                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
+                    <span>424</span>
+                </div>
             </div>
         </div>
 
-      </div>
-    </section>
-
-    <section class="social-section">
-      <div class="container">
-        <h2> <span class="magic-text">Наши цифровые следы</span></h2>
-        <p class="subtitle">Подпишитесь, чтобы следить за новыми проектами и insights</p>
-        
-        <div class="social-grid">
-          <a href="https://t.me/pzfstudio" target="_blank" class="social-card">
-            <div class="social-icon">
-              <i class="fab fa-telegram"></i>
+        <!-- Выпадающее меню «НОВИНКИ» -->
+        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--active">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
             </div>
-            <h3>Telegram</h3>
-            <p>Новости, анонсы и полезные материалы</p>
-            <span class="social-link">Перейти →</span>
-          </a>
-          
-          <a href="https://youtube.com/pzfstudio" target="_blank" class="social-card">
-            <div class="social-icon">
-              <i class="fab fa-youtube"></i>
+            <div class="novelties-grid">
+                <div class="novelties-col">
+                    <span class="novelties-title">Коллекции</span>
+                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
+                    <span>Мой выбор</span><span>Все товары</span>
+                </div>
+                <div class="novelties-col">
+                    <span class="novelties-title">Категории</span>
+                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
+                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
+                    <span>Сумки</span><span>Шорты и юбки</span><span>Головные уборы</span>
+                </div>
             </div>
-            <h3>YouTube</h3>
-            <p>Туториалы и кейсы</p>
-            <span class="social-link">Перейти →</span>
-          </a>
-          
-          <a href="https://vk.com/pzfstudio" target="_blank" class="social-card">
-            <div class="social-icon">
-              <i class="fab fa-vk"></i>
+            <div class="search-block">
+                <div class="search-block__icon"></div>
+                <span class="search-block__placeholder">Поиск</span>
             </div>
-            <h3>VK</h3>
-            <p>Комьюнити и обсуждения</p>
-            <span class="social-link">Перейти →</span>
-          </a>
         </div>
-      </div>
-    </section>
 
-  </main>
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">.pzf</div>
-        <div class="footer-links">
-            <a href="https://t.me/pzfstudio" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="https://instagram.com/pzfstudio" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com/pzfstudio" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://vk.com/pzfstudio" target="_blank" title="VK"><i class="fab fa-vk"></i></a>
-            <a href="https://rutube.ru/pzfstudio" target="_blank" title="RuTube"><i class="fas fa-play"></i></a>
-            <a href="https://tiktok.com/@pzfstudio" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://github.com/pzf-studio" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <!-- Боковая кнопка ПОИСК / КОРЗИНА -->
+        <div class="side-button" id="sideButton">
+            <div class="side-button__inner">
+                <span class="side-button__text">ПОИСК</span>
+                <span class="side-button__text">КОРЗИНА</span>
+            </div>
         </div>
-      </div>
-      <p class="copyright">.pzf © 2025 — Студия цифровой магии</p>
-    </div>
-  </footer>
 
-  <div class="consultation-popup" id="consultationPopup">
-    <div class="popup-content">
-        <button class="close-popup">&times;</button>
-        <h3>Бесплатная консультация</h3>
-        <p>Оставьте заявку, и мы обсудим ваш проект в ближайшее время</p>
-        <button class="popup-button" onclick="location.href='#contacts'">Оставить заявку</button>
-      </div>
-      <div class="popup-trigger">
-        <i class="fas fa-comments"></i> Консультация
-      </div>
+        <!-- Карусель -->
+        <div class="carousel">
+            <div class="carousel__background"></div>
+            <div class="carousel__slide" id="carouselSlide"></div>
+
+            <!-- Новая левая стрелка (модуль arrleft) -->
+            <div class="arrleft" id="arrleft">
+                <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_ii_46_11_left)">
+                        <rect width="87" height="153" rx="30" fill="white" fill-opacity="0.15" />
+                        <g transform="translate(87, 0) scale(-1, 1)">
+                            <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)"
+                                  stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                            <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                        </g>
+                    </g>
+                    <defs>
+                        <filter id="filter0_ii_46_11_left" x="0" y="-2" width="87" height="157" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_46_11_left"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="effect1_innerShadow_46_11_left" result="effect2_innerShadow_46_11_left"/>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Новая правая стрелка (модуль arrright) -->
+            <div class="arrright" id="arrright">
+                <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_ii_46_11_right)">
+                        <rect width="87" height="153" rx="30" transform="matrix(-1 0 0 1 87 0)" fill="white" fill-opacity="0.15" />
+                        <line y1="-1" x2="64.3506" y2="-1" transform="matrix(0.699294 0.714834 0.714834 -0.699294 21.2852 30)"
+                              stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                        <path d="M67 76.6993L20.2852 122.5" stroke="white" stroke-opacity="0.5" stroke-width="2" />
+                    </g>
+                    <defs>
+                        <filter id="filter0_ii_46_11_right" x="0" y="-2" width="87" height="157" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_46_11_right"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="-2"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                            <feBlend mode="normal" in2="effect1_innerShadow_46_11_right" result="effect2_innerShadow_46_11_right"/>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="carousel__indicators" id="carouselIndicators">
+                <div class="carousel__indicator carousel__indicator--active"></div>
+                <div class="carousel__indicator"></div>
+                <div class="carousel__indicator"></div>
+            </div>
+        </div>
+
+        <!-- Заголовок НОВИНКИ и кнопка СМОТРЕТЬ ВСЕ -->
+        <div class="section-title">НОВИНКИ</div>
+        <div class="watch-all-button" id="watchAllBtn">
+            <span class="watch-all-button__text">СМОТРЕТЬ ВСЕ</span>
+        </div>
+
+        <!-- Сетка товаров (содержимое не менялось) -->
+        <div class="products-grid">
+            <!-- Ряд 1 -->
+            <div class="product-card product-card--1">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--1"></div>
+                <div class="product-card__info product-card__info--1">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">JAPANESE DUST SELVEDGE TRUCKER JACKET</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--2">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--2"></div>
+                <div class="product-card__info product-card__info--2">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">LAKE USED DUNE DENIM</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--3">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--3"></div>
+                <div class="product-card__info product-card__info--3">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">HEAVY FLIGHT SHEARLING HOODIE BLACK</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">26 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--4">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--4"></div>
+                <div class="product-card__info product-card__info--4">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">SAARLAND ZIPPER USED GREY</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">21 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Ряд 2 -->
+            <div class="product-card product-card--5">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--5"></div>
+                <div class="product-card__info product-card__info--5">
+                    <span class="product-card__brand">Alice Hollywood</span>
+                    <span class="product-card__name">MOTO COUTURE GLOVES BLACKOUT</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">10 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--6">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--6"></div>
+                <div class="product-card__info product-card__info--6">
+                    <span class="product-card__brand">Racer Worldwide</span>
+                    <span class="product-card__name">SLIM LOW-WAIST DENIM</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--7">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--7"></div>
+                <div class="product-card__info product-card__info--7">
+                    <span class="product-card__brand">Jaded London</span>
+                    <span class="product-card__name">COLOSSOUS PANTS CAMO SUIT BAGGY FIT</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">9 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--8">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--8"></div>
+                <div class="product-card__info product-card__info--8">
+                    <span class="product-card__brand">Alice Hollywood</span>
+                    <span class="product-card__name">SWAROWSKI BELT CLASSIC</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Ряд 3 -->
+            <div class="product-card product-card--9">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--9"></div>
+                <div class="product-card__info product-card__info--9">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">JAPANESE DUST SELVEDGE TRUCKER JACKET</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--10">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--10"></div>
+                <div class="product-card__info product-card__info--10">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">LAKE USED DUNE DENIM</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">19 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--11">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--11"></div>
+                <div class="product-card__info product-card__info--11">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">HEAVY FLIGHT SHEARLING HOODIE BLACK</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">26 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">Под заказ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card product-card--12">
+                <div class="product-card__bg"></div>
+                <div class="product-card__watermark"></div>
+                <div class="product-card__white-bg"></div>
+                <div class="product-card__image product-card__image--12"></div>
+                <div class="product-card__info product-card__info--12">
+                    <span class="product-card__brand">Nofaithstudios</span>
+                    <span class="product-card__name">SAARLAND ZIPPER USED GREY</span>
+                    <div class="product-card__price-row">
+                        <span class="product-card__price">21 990 ₽</span>
+                        <span class="product-card__dash">-</span>
+                        <span class="product-card__status">В наличии</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-block">
+            <div class="social-block__button">
+                <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="social-block__title">СОЦИАЛЬНЫЕ СЕТИ</span>
+            <span class="social-block__link">Telegram</span>
+            <span class="social-block__link">Instagram</span>
+            <span class="social-block__link">VK</span>
+        </div>
+
+        <!-- Полезная информация -->
+        <div class="info-block">
+            <div class="info-block__button">
+                <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="info-block__title">ПОЛЕЗНАЯ ИНФОРМАЦИЯ</span>
+            <span class="info-block__link">Обо мне</span>
+            <span class="info-block__link">Отзывы</span>
+            <span class="info-block__link">Вопросы</span>
+            <span class="info-block__link">Публичная оферта</span>
+        </div>
+
     </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="script.js"></script>
-
-  <div class="privacy-overlay" id="privacyOverlay">
-    <div class="privacy-modal">
-      <div class="privacy-content">
-        <h2>Соглашение об обработке персональных данных</h2>
-        <div class="privacy-text">
-          <p>Перед использованием нашего сайта, пожалуйста, ознакомьтесь с нашими условиями:</p>
-          <ol>
-            <li>Мы собираем только необходимые данные для работы сервиса</li>
-            <li>Ваши данные защищены и не передаются третьим лицам без вашего согласия</li>
-            <li>Мы используем cookies для улучшения пользовательского опыта</li>
-            <li>Вы можете отозвать свое согласие в любое время</li>
-          </ol>
-          <p>Полный текст <a href="/privacy" target="_blank">Политики конфиденциальности</a> доступен по ссылке.</p>
-        </div>
-        <div class="privacy-actions">
-          <button class="privacy-btn accept" id="privacyAccept">Я согласен</button>
-          <button class="privacy-btn decline" id="privacyDecline">Не согласен</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
