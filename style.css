@@ -467,6 +467,14 @@ body {
     background-position: center;
 }
 
+/* НОВОЕ ПРАВИЛО: единая фотография товара для всех карточек, прижатая к верхнему краю и отцентрированная по горизонтали */
+.product-card__image {
+    background-image: url('./static/images/v125_89.png') !important;
+    background-position: center top !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
 .product-card__info {
     position: absolute;
     width: 283px;
@@ -533,7 +541,7 @@ body {
 .product-card--11 { left: 690px; top: 1194px; }
 .product-card--12 { left: 1035px; top: 1194px; }
 
-/* Фото товаров */
+/* Фото товаров (оригинальные – переопределены выше, оставлены для справки) */
 .product-card__image--1 { background-image: url(photo_2025-12-02_00-52-37.jpg); }
 .product-card__image--2 { background-image: url(photo_2025-12-02_00-52-54.jpg); }
 .product-card__image--3 { background-image: url(IMG_9716.jpg); }
