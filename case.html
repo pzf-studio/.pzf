@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anton Shell</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case.css">
+</head>
+<body>
+    <div class="home">
+        <div class="logo"></div>
+        <div class="logo logo--right"></div>
+
+        <div class="menu--default" id="menuDefault">
+            <div class="menu__highlight-rectangle" id="highlightRect"></div>
+            <div class="menu__inner">
+                <span class="menu__item" data-menu="novelties">НОВИНКИ</span>
+                <span class="menu__item" data-menu="designers">ДИЗАЙНЕРЫ</span>
+                <span class="menu__item">МУЖСКОЕ</span>
+                <span class="menu__item">ЖЕНСКОЕ</span>
+                <span class="menu__item">СКИДКИ</span>
+            </div>
+        </div>
+
+        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="designers-grid">
+                <div class="designers-col">
+                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
+                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
+                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
+                    <span>Guidi</span>
+                </div>
+                <div class="designers-col">
+                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
+                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
+                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
+                    <span>424</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--active">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="novelties-grid">
+                <div class="novelties-col">
+                    <span class="novelties-title">Коллекции</span>
+                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
+                    <span>Мой выбор</span><span>Все товары</span>
+                </div>
+                <div class="novelties-col">
+                    <span class="novelties-title">Категории</span>
+                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
+                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
+                    <span>Сумки</span><span>Шорты и юбки</span><span>Головные уборы</span>
+                </div>
+            </div>
+            <div class="search-block">
+                <div class="search-block__icon"></div>
+                <span class="search-block__placeholder">Поиск</span>
+            </div>
+        </div>
+
+        <div class="side-button" id="sideButton">
+            <div class="side-button__inner">
+                <span class="side-button__text">ПОИСК</span>
+                <span class="side-button__text">КОРЗИНА</span>
+            </div>
+        </div>
+
+        <div class="product-background-watermark"></div>
+
+        <div class="product-detail-layout">
+            <div class="product-detail-left">
+                <div class="product-thumbnails" id="productThumbnails">
+                    <div class="thumb-item thumb-active" data-src="./static/images/v125_89.png">
+                        <img src="./static/images/v125_89.png" alt="">
+                    </div>
+                    <div class="thumb-item" data-src="./static/images/v125_89.png">
+                        <img src="./static/images/v125_89.png" alt="">
+                    </div>
+                    <div class="thumb-item" data-src="./static/images/v125_89.png">
+                        <img src="./static/images/v125_89.png" alt="">
+                    </div>
+                    <div class="thumb-item" data-src="./static/images/v125_89.png">
+                        <img src="./static/images/v125_89.png" alt="">
+                    </div>
+                </div>
+
+                <div class="product-main-image-wrapper">
+                    <div class="main-image-container" id="mainImageContainer">
+                        <img src="./static/images/v125_89.png" alt="" id="mainProductImage">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-detail-right">
+                <div class="product-info-content">
+                    <div class="info-brand">Nofaithstudios</div>
+                    <h1 class="info-title">JAPANESE DUST SELVEDGE TRUCKER JACKET</h1>
+                    <div class="info-price-row">
+                        <span class="info-price">19 990 ₽</span>
+                        <span class="info-dash">-</span>
+                        <span class="info-status">Под заказ</span>
+                    </div>
+
+                    <div class="size-select-wrapper">
+                        <select class="size-select" id="sizeSelect">
+                            <option value="" disabled selected>РАЗМЕР</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+
+                    <button class="action-button add-to-cart-btn" id="addToCartBtn">
+                        ДОБАВИТЬ В КОРЗИНУ
+                    </button>
+
+                    <div class="info-description">
+                        <p>
+                            Красивая джинсовка от NFS выполнена из плотного японского selvedge-denim.
+                            По всему изделию имеется характерный дистресс и красивое напыление, имитирующее грязь.
+                            Вытачки на задней части и защипы на передней образовывают мешковатую посадку.
+                            Помогу с размером каждому. <span class="read-more">...Читать дальше</span>
+                        </p>
+                    </div>
+
+                    <div class="open-source-wrapper">
+                        <button class="action-button open-source-btn" id="openSourceBtn">
+                            ОТКРЫТЬ ИСТОЧНИК ТОВАРА
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommended-products">
+            <div class="section-title">РЕКОМЕНДУЮ</div>
+            <div class="watch-all-button" id="recommendWatchAllBtn">
+            </div>
+            <div class="products-grid">
+                <div class="product-card product-card--1">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--1"></div>
+                    <div class="product-card__info product-card__info--1">
+                        <span class="product-card__brand">Nofaithstudios</span>
+                        <span class="product-card__name">JAPANESE DUST SELVEDGE TRUCKER JACKET</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">19 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">В наличии</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--2">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--2"></div>
+                    <div class="product-card__info product-card__info--2">
+                        <span class="product-card__brand">Nofaithstudios</span>
+                        <span class="product-card__name">LAKE USED DUNE DENIM</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">19 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">В наличии</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--3">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--3"></div>
+                    <div class="product-card__info product-card__info--3">
+                        <span class="product-card__brand">Nofaithstudios</span>
+                        <span class="product-card__name">HEAVY FLIGHT SHEARLING HOODIE BLACK</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">26 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">Под заказ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--4">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--4"></div>
+                    <div class="product-card__info product-card__info--4">
+                        <span class="product-card__brand">Nofaithstudios</span>
+                        <span class="product-card__name">SAARLAND ZIPPER USED GREY</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">21 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">В наличии</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--5">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--5"></div>
+                    <div class="product-card__info product-card__info--5">
+                        <span class="product-card__brand">Alice Hollywood</span>
+                        <span class="product-card__name">MOTO COUTURE GLOVES BLACKOUT</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">10 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">В наличии</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--6">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--6"></div>
+                    <div class="product-card__info product-card__info--6">
+                        <span class="product-card__brand">Racer Worldwide</span>
+                        <span class="product-card__name">SLIM LOW-WAIST DENIM</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">19 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">Под заказ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--7">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--7"></div>
+                    <div class="product-card__info product-card__info--7">
+                        <span class="product-card__brand">Jaded London</span>
+                        <span class="product-card__name">COLOSSOUS PANTS CAMO SUIT BAGGY FIT</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">9 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">Под заказ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card product-card--8">
+                    <div class="product-card__bg"></div>
+                    <div class="product-card__watermark"></div>
+                    <div class="product-card__white-bg"></div>
+                    <div class="product-card__image product-card__image--8"></div>
+                    <div class="product-card__info product-card__info--8">
+                        <span class="product-card__brand">Alice Hollywood</span>
+                        <span class="product-card__name">SWAROWSKI BELT CLASSIC</span>
+                        <div class="product-card__price-row">
+                            <span class="product-card__price">19 990 ₽</span>
+                            <span class="product-card__dash">-</span>
+                            <span class="product-card__status">Под заказ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-block">
+            <div class="social-block__button">
+                <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="social-block__title">СОЦИАЛЬНЫЕ СЕТИ</span>
+            <span class="social-block__link">Telegram</span>
+            <span class="social-block__link">Instagram</span>
+            <span class="social-block__link">VK</span>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block__button">
+                <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="info-block__title">ПОЛЕЗНАЯ ИНФОРМАЦИЯ</span>
+            <span class="info-block__link">Обо мне</span>
+            <span class="info-block__link">Отзывы</span>
+            <span class="info-block__link">Вопросы</span>
+            <span class="info-block__link">Публичная оферта</span>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+    <script src="case.js"></script>
+</body>
+</html>
