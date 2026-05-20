@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const windowWidth = window.innerWidth;
         const originalWidth = 1440;
         let scale = windowWidth / originalWidth;
-        if (scale < 1) scale = 1;
         currentScale = scale;
         home.style.transform = `scale(${scale})`;
-        home.style.transformOrigin = 'top left';
+        home.style.transformOrigin = 'top center';
     }
 
     scaleHome();
@@ -127,15 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
         thumbnails[index].click();
     }
 
-    arrowLeft.addEventListener('click', function() {
-        const idx = getCurrentIndex();
-        slideToIndex(idx - 1);
-    });
+    if (arrowLeft) {
+        arrowLeft.addEventListener('click', function() {
+            const idx = getCurrentIndex();
+            slideToIndex(idx - 1);
+        });
+    }
 
-    arrowRight.addEventListener('click', function() {
-        const idx = getCurrentIndex();
-        slideToIndex(idx + 1);
-    });
+    if (arrowRight) {
+        arrowRight.addEventListener('click', function() {
+            const idx = getCurrentIndex();
+            slideToIndex(idx + 1);
+        });
+    }
 
     indicators.forEach((ind, index) => {
         ind.addEventListener('click', function() {
