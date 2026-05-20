@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — Anton Shell</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <div class="home cart-page">
+
+        <!-- логотипы -->
+        <div class="logo"></div>
+        <div class="logo logo--right"></div>
+
+        <!-- Меню (полностью как на главной) -->
+        <div class="menu--default" id="menuDefault">
+            <div class="menu__highlight-rectangle" id="highlightRect"></div>
+            <div class="menu__inner">
+                <span class="menu__item" data-menu="novelties">НОВИНКИ</span>
+                <span class="menu__item" data-menu="designers">ДИЗАЙНЕРЫ</span>
+                <span class="menu__item">МУЖСКОЕ</span>
+                <span class="menu__item">ЖЕНСКОЕ</span>
+                <span class="menu__item">СКИДКИ</span>
+            </div>
+        </div>
+
+        <!-- Выпадающие меню (оставлены для совместимости) -->
+        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="designers-grid">
+                <div class="designers-col">
+                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
+                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
+                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
+                </div>
+                <div class="designers-col">
+                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
+                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
+                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
+                <span class="menu-dropdown__item">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="novelties-grid">
+                <div class="novelties-col">
+                    <span class="novelties-title">Коллекции</span>
+                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
+                    <span>Мой выбор</span><span>Все товары</span>
+                </div>
+                <div class="novelties-col">
+                    <span class="novelties-title">Категории</span>
+                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
+                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
+                </div>
+            </div>
+            <div class="search-block">
+                <div class="search-block__icon"></div>
+                <span class="search-block__placeholder">Поиск</span>
+            </div>
+        </div>
+
+        <!-- Вертикальная кнопка ПОИСК / КОРЗИНА -->
+        <div class="side-button" id="sideButton">
+            <div class="side-button__inner">
+                <span class="side-button__text">ПОИСК</span>
+                <span class="side-button__text">КОРЗИНА</span>
+            </div>
+        </div>
+
+        <!-- ЗАГОЛОВОК СТРАНИЦЫ -->
+        <div class="cart-title">КОРЗИНА</div>
+
+        <!-- ========== ТОВАР 1 ========== -->
+        <div class="cart-wrapper" style="left: 150px; top: 209px;">
+            <div class="cart-item__header">
+                <span>ПОД ЗАКАЗ</span>
+                <div class="cart-item__remove"></div>
+            </div>
+            <div class="cart-body">
+                <div class="cart-item__image" style="background-image: url('./static/images/v125_89.png');"></div>
+                <div class="cart-item__details">
+                    <div class="cart-item__top-group">
+                        <div class="cart-item__brand">Nofaithstudios</div>
+                        <div class="cart-item__name">JAPANESE DUST SELVEDGE TRUCKER JACKET</div>
+                    </div>
+                    <div class="cart-item__bottom-group">
+                        <div class="cart-item__info-left">
+                            <div class="cart-item__size-row">
+                                <span>Размер</span>
+                                <span>L</span>
+                            </div>
+                            <div class="cart-item__qty-row">
+                                <span>Количество</span>
+                                <div class="cart-item__qty-controls">
+                                    <span class="qty-btn qty-minus">–</span>
+                                    <span class="cart-item__qty-number">1</span>
+                                    <span class="qty-btn qty-plus">+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item__price">19 990 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ТОВАР 2 ========== -->
+        <div class="cart-wrapper" style="left: 150px; top: 480px;">
+            <div class="cart-item__header">
+                <span>ПОД ЗАКАЗ</span>
+                <div class="cart-item__remove"></div>
+            </div>
+            <div class="cart-body">
+                <div class="cart-item__image" style="background-image: url('./static/images/v125_89.png');"></div>
+                <div class="cart-item__details">
+                    <div class="cart-item__top-group">
+                        <div class="cart-item__brand">Nofaithstudios</div>
+                        <div class="cart-item__name">LAKE USED DUNE DENIM</div>
+                    </div>
+                    <div class="cart-item__bottom-group">
+                        <div class="cart-item__info-left">
+                            <div class="cart-item__size-row">
+                                <span>Размер</span>
+                                <span>L</span>
+                            </div>
+                            <div class="cart-item__qty-row">
+                                <span>Количество</span>
+                                <div class="cart-item__qty-controls">
+                                    <span class="qty-btn qty-minus">–</span>
+                                    <span class="cart-item__qty-number">1</span>
+                                    <span class="qty-btn qty-plus">+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item__price">19 990 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая панель -->
+        <div class="cart-right-panel">
+            <div class="cart-right-panel__inner">
+                <div class="cart-total">Итого: 120 000 ₽</div>
+                <div class="cart-instruction">
+                    После нажатия кнопки «Отправить запрос» откроется чат в Telegram. Сообщение с выбранными товарами сформируется автоматически. Отправьте его в чат для оформления заказа. Если сообщение не появилось автоматически, нажмите кнопку:
+                </div>
+                <div class="copy-request-wrapper">
+                    <span class="copy-icon"></span>
+                    <span class="copy-text">Скопировать запрос вручную</span>
+                </div>
+                <button class="send-request-btn">ОТПРАВИТЬ ЗАПРОС</button>
+            </div>
+        </div>
+
+        <div class="social-block">
+            <div class="social-block__button">
+                <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="social-block__title">СОЦИАЛЬНЫЕ СЕТИ</span>
+            <span class="social-block__link">Telegram</span>
+            <span class="social-block__link">Instagram</span>
+            <span class="social-block__link">VK</span>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block__button">
+                <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="info-block__title">ПОЛЕЗНАЯ ИНФОРМАЦИЯ</span>
+            <span class="info-block__link">Обо мне</span>
+            <span class="info-block__link">Отзывы</span>
+            <span class="info-block__link">Вопросы</span>
+            <span class="info-block__link">Публичная оферта</span>
+        </div>
+    </div>
+    <script src="cart.js"></script>
+</body>
+</html>
