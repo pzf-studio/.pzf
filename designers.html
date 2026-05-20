@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дизайнеры | Anton Shell</title>
+    <link rel="stylesheet" href="designers.css">
+</head>
+<body>
+    <div class="home designers-page">
+        <!-- HEADER (точная копия из index.html) -->
+        <div class="logo"></div>
+        <div class="logo logo--right"></div>
+
+        <div class="menu--default" id="menuDefault">
+            <div class="menu__highlight-rectangle" id="highlightRect"></div>
+            <div class="menu__inner">
+                <span class="menu__item" data-menu="novelties">НОВИНКИ</span>
+                <span class="menu__item" data-menu="designers">ДИЗАЙНЕРЫ</span>
+                <span class="menu__item">МУЖСКОЕ</span>
+                <span class="menu__item">ЖЕНСКОЕ</span>
+                <span class="menu__item">СКИДКИ</span>
+            </div>
+        </div>
+
+        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--active">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="designers-grid">
+                <div class="designers-col">
+                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
+                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
+                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
+                    <span>Guidi</span>
+                </div>
+                <div class="designers-col">
+                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
+                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
+                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
+                    <span>424</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--active">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="novelties-grid">
+                <div class="novelties-col">
+                    <span class="novelties-title">Коллекции</span>
+                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
+                    <span>Мой выбор</span><span>Все товары</span>
+                </div>
+                <div class="novelties-col">
+                    <span class="novelties-title">Категории</span>
+                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
+                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
+                    <span>Сумки</span><span>Шорты и юбки</span><span>Головные уборы</span>
+                </div>
+            </div>
+            <div class="search-block">
+                <div class="search-block__icon"></div>
+                <span class="search-block__placeholder">Поиск</span>
+            </div>
+        </div>
+
+        <div class="side-button" id="sideButton">
+            <div class="side-button__inner">
+                <span class="side-button__text">ПОИСК</span>
+                <span class="side-button__text">КОРЗИНА</span>
+            </div>
+        </div>
+
+        <!-- ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ ДИЗАЙНЕРОВ -->
+        <div class="designers-content">
+            <!-- Алфавит (1012px по центру) -->
+            <nav class="alphabet-nav">
+                <span class="letter" data-letter="A">A</span>
+                <span class="letter" data-letter="B">B</span>
+                <span class="letter" data-letter="C">C</span>
+                <span class="letter" data-letter="D">D</span>
+                <span class="letter" data-letter="E">E</span>
+                <span class="letter" data-letter="F">F</span>
+                <span class="letter" data-letter="G">G</span>
+                <span class="letter" data-letter="H">H</span>
+                <span class="letter" data-letter="I">I</span>
+                <span class="letter" data-letter="J">J</span>
+                <span class="letter" data-letter="K">K</span>
+                <span class="letter" data-letter="L">L</span>
+                <span class="letter" data-letter="M">M</span>
+                <span class="letter" data-letter="N">N</span>
+                <span class="letter" data-letter="O">O</span>
+                <span class="letter" data-letter="P">P</span>
+                <span class="letter" data-letter="Q">Q</span>
+                <span class="letter" data-letter="R">R</span>
+                <span class="letter" data-letter="S">S</span>
+                <span class="letter" data-letter="T">T</span>
+                <span class="letter" data-letter="U">U</span>
+                <span class="letter" data-letter="V">V</span>
+                <span class="letter" data-letter="W">W</span>
+                <span class="letter" data-letter="X">X</span>
+                <span class="letter" data-letter="Y">Y</span>
+                <span class="letter" data-letter="Z">Z</span>
+                <span class="letter" data-letter="#">#</span>
+            </nav>
+
+            <!-- Сетка брендов -->
+            <div class="brands-container">
+                <!-- A -->
+                <div class="brand-column" data-letter="A">
+                    <div class="letter-header">A</div>
+                    <ul class="brand-list">
+                        <li><a href="#">A Paper Kid</a></li>
+                        <li><a href="#">A-COLD-WALL</a></li>
+                        <li><a href="#">A.P.C.</a></li>
+                    </ul>
+                </div>
+                <!-- B -->
+                <div class="brand-column" data-letter="B">
+                    <div class="letter-header">B</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Brain Dead</a></li>
+                        <li><a href="#">Breechka Magazine</a></li>
+                    </ul>
+                </div>
+                <!-- C -->
+                <div class="brand-column" data-letter="C">
+                    <div class="letter-header">C</div>
+                    <ul class="brand-list">
+                        <li><a href="#">A Paper Kid</a></li>
+                        <li><a href="#">A-COLD-WALL</a></li>
+                        <li><a href="#">A.P.C.</a></li>
+                    </ul>
+                </div>
+                <!-- D -->
+                <div class="brand-column" data-letter="D">
+                    <div class="letter-header">D</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Brain Dead</a></li>
+                        <li><a href="#">Breechka Magazine</a></li>
+                        <li><a href="#">Bruler d'Amour</a></li>
+                    </ul>
+                </div>
+                <!-- E -->
+                <div class="brand-column" data-letter="E">
+                    <div class="letter-header">E</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Easy Peasy</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- F -->
+                <div class="brand-column" data-letter="F">
+                    <div class="letter-header">F</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Easy Peasy</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- G -->
+                <div class="brand-column" data-letter="G">
+                    <div class="letter-header">G</div>
+                    <ul class="brand-list">
+                        <li><a href="#">A Paper Kid</a></li>
+                        <li><a href="#">A-COLD-WALL</a></li>
+                        <li><a href="#">A.P.C.</a></li>
+                    </ul>
+                </div>
+                <!-- H -->
+                <div class="brand-column" data-letter="H">
+                    <div class="letter-header">H</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Brain Dead</a></li>
+                        <li><a href="#">Breechka Magazine</a></li>
+                        <li><a href="#">Bruler d'Amour</a></li>
+                    </ul>
+                </div>
+                <!-- I -->
+                <div class="brand-column" data-letter="I">
+                    <div class="letter-header">I</div>
+                    <ul class="brand-list">
+                        <li><a href="#">A Paper Kid</a></li>
+                        <li><a href="#">A-COLD-WALL</a></li>
+                        <li><a href="#">A.P.C.</a></li>
+                    </ul>
+                </div>
+                <!-- J -->
+                <div class="brand-column" data-letter="J">
+                    <div class="letter-header">J</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Brain Dead</a></li>
+                        <li><a href="#">Breechka Magazine</a></li>
+                        <li><a href="#">Bruler d'Amour</a></li>
+                    </ul>
+                </div>
+                <!-- K -->
+                <div class="brand-column" data-letter="K">
+                    <div class="letter-header">K</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Easy Peasy</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- L -->
+                <div class="brand-column" data-letter="L">
+                    <div class="letter-header">L</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Easy Peasy</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- M -->
+                <div class="brand-column" data-letter="M">
+                    <div class="letter-header">M</div>
+                    <ul class="brand-list">
+                        <li><a href="#">A Paper Kid</a></li>
+                        <li><a href="#">A-COLD-WALL</a></li>
+                        <li><a href="#">A.P.C.</a></li>
+                    </ul>
+                </div>
+                <!-- N -->
+                <div class="brand-column" data-letter="N">
+                    <div class="letter-header">N</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Brain Dead</a></li>
+                        <li><a href="#">Breechka Magazine</a></li>
+                        <li><a href="#">Bruler d'Amour</a></li>
+                    </ul>
+                </div>
+                <!-- O -->
+                <div class="brand-column" data-letter="O">
+                    <div class="letter-header">O</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Easy Peasy</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- P -->
+                <div class="brand-column" data-letter="P">
+                    <div class="letter-header">P</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Comme Des Garcons Junya</a></li>
+                        <li><a href="#">Watanabe</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- Q -->
+                <div class="brand-column" data-letter="Q">
+                    <div class="letter-header">Q</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Easy Peasy</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+                <!-- R -->
+                <div class="brand-column" data-letter="R">
+                    <div class="letter-header">R</div>
+                    <ul class="brand-list">
+                        <li><a href="#">Enfants Riches Deprimes</a></li>
+                        <li><a href="#">Comme Des Garcons</a></li>
+                        <li><a href="#">Junya Watanabe</a></li>
+                        <li><a href="#">Evisen</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER (точная копия из index.html) -->
+        <div class="social-block">
+            <div class="social-block__button">
+                <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="social-block__title">СОЦИАЛЬНЫЕ СЕТИ</span>
+            <span class="social-block__link">Telegram</span>
+            <span class="social-block__link">Instagram</span>
+            <span class="social-block__link">VK</span>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block__button">
+                <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="info-block__title">ПОЛЕЗНАЯ ИНФОРМАЦИЯ</span>
+            <span class="info-block__link">Обо мне</span>
+            <span class="info-block__link">Отзывы</span>
+            <span class="info-block__link">Вопросы</span>
+            <span class="info-block__link">Публичная оферта</span>
+        </div>
+    </div>
+
+    <script src="designers.js"></script>
+</body>
+</html>
