@@ -3,7 +3,6 @@
     min-height: 1159px;
     background: #FFFFFF;
 }
-
 .cart-title {
     position: absolute;
     width: 177px;
@@ -17,31 +16,28 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.8);
 }
-
 .cart-wrapper {
     position: absolute;
     width: 719px;
-    height: 250px;
-    border: 2px solid transparent;
+    height: 217px;
+    border: 1px solid transparent;
     border-radius: 2px;
     overflow: hidden;
     background-image: 
         linear-gradient(#FFFFFF, #FFFFFF),
-        linear-gradient(to bottom, #9C9C9C, #ececec);
+        linear-gradient(to bottom, #9C9C9C, #D3D3D3);
     background-origin: padding-box, border-box;
     background-clip: padding-box, border-box;
     background-color: transparent;
     display: flex;
     flex-direction: column;
 }
-
-/* --- Верхняя полоса "ПОД ЗАКАЗ" --- */
 .cart-wrapper .cart-item__header {
     width: 100%;
     height: 33px;
     flex-shrink: 0;
-    background: linear-gradient(180deg, rgba(189, 189, 189, 0.81) 0%, #FFFFFF 33.21%, #BDBDBD 84.42%, #F0F0F0 100%);
-    border-bottom: 1px solid #9C9C9C;
+    background: #E8E8E8;
+    border-bottom: 1px solid #D3D3D3;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,8 +48,6 @@
     font-family: 'SF Compact Display', sans-serif;
     color: rgba(0, 0, 0, 0.8);
 }
-
-/* Крестик удаления */
 .cart-item__remove {
     width: 28px;
     height: 28px;
@@ -72,16 +66,12 @@
 }
 .cart-item__remove::before { transform: rotate(45deg); }
 .cart-item__remove::after { transform: rotate(-45deg); }
-
-/* --- Нижняя часть (тело карточки) --- */
 .cart-wrapper .cart-body {
     flex: 1;
     display: flex;
     flex-direction: row;
     height: 100%;
 }
-
-/* --- Картинка --- */
 .cart-wrapper .cart-item__image {
     width: 164px;
     height: 100%;
@@ -90,25 +80,26 @@
     background-size: cover;
     background-position: center;
 }
-
-/* --- Текстовая часть справа --- */
 .cart-wrapper .cart-item__details {
     flex: 1;
-    padding: 15px 20px;
+    padding: 20px 25px 20px 25px;
     display: flex;
     flex-direction: column;
 }
-
-
+.cart-item__top-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 25px;
+}
 .cart-item__brand {
     font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
     color: rgba(0, 0, 0, 0.8);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
-
 .cart-item__name {
     font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
     font-weight: 300;
@@ -116,16 +107,19 @@
     line-height: 19px;
     color: rgba(0, 0, 0, 0.8);
 }
-
-/* --- Нижний блок (Размер, Кол-во, Цена) --- */
 .cart-item__bottom-group {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    margin-top: 10px;
+    margin-top: auto;
 }
-
+.cart-item__info-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
 .cart-item__size-row, 
 .cart-item__qty-row {
     display: flex;
@@ -137,31 +131,25 @@
     line-height: 18px;
     color: rgba(0, 0, 0, 0.8);
 }
-
 .cart-item__qty-controls {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-
 .qty-btn {
     cursor: default;
     user-select: none;
     font-size: 15px;
 }
-
-/* Цена — теперь справа и жирная */
 .cart-item__price {
     font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
     color: rgba(0, 0, 0, 0.8);
-    margin-left: auto;          /* Это прижимает цену к правому краю */
-    padding-left: 15px;         /* Отступ от последнего элемента (количество) */
+    margin-left: auto;
+    padding-left: 15px;
 }
-
-/* --- Правая панель --- */
 .cart-right-panel {
     position: absolute;
     width: 340px;
@@ -173,12 +161,22 @@
     gap: 24px;
     text-align: center;
 }
-
+.cart-right-panel__inner {
+    border: 1px solid #D3D3D3;
+    border-radius: 2px;
+    background: #FFFFFF;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
+}
 .cart-total {
     font-size: 22px;
     color: rgba(0, 0, 0, 0.8);
 }
-
 .cart-instruction {
     font-family: 'SF Compact Display', sans-serif;
     font-size: 14px;
@@ -186,27 +184,23 @@
     color: #7F7F7F;
     max-width: 297px;
 }
-
 .copy-request-wrapper {
     display: flex;
     align-items: center;
     gap: 6px;
     cursor: pointer;
     justify-content: center;
-    margin-top: -23px; /* Уменьшает отступ от текста выше */
+    margin-top: -10px;
 }
-
 .copy-icon {
     width: 18px;
     height: 18px;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,0.7)' stroke-width='2'%3E%3Crect x='9' y='9' width='13' height='13' rx='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E") center/contain no-repeat;
 }
-
 .copy-text {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.7);
 }
-
 .send-request-btn {
     background: rgba(255, 255, 255, 0.15);
     box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -221,113 +215,9 @@
     display: inline-block;
     margin: 0 auto;
 }
-
 .send-request-btn:hover {
     background: rgba(200,200,200,0.2);
 }
-
-/* --- Футер --- */
-.social-block, .info-block {
-    position: absolute;
-    bottom: 60px;
-}
-.social-block {
-    left: calc(50% - 183px/2 - 172.5px);
-}
-.info-block {
-    left: calc(50% - 229px/2 + 149.5px);
-    bottom: 40px;
-}
-
-.cart-wrapper .cart-item__details {
-    flex: 1;
-    padding: 20px 25px 20px 25px; /* Отступы: верх право низ лево */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Верхняя группа: Бренд и Название */
-.cart-item__top-group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;          /* Расстояние между брендом и названием ровно 16px */
-    margin-bottom: 25px; /* Отступ от верхней группы до блока с размером и ценой */
-}
-
-.cart-item__brand {
-    font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    color: rgba(0, 0, 0, 0.8);
-    margin-bottom: 4px;
-}
-
-.cart-item__name {
-    font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 19px;
-    color: rgba(0, 0, 0, 0.8);
-}
-
-/* Нижняя группа: Размер, Количество, Цена */
-.cart-item__bottom-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Разбрасывает левую группу и цену по краям */
-    width: 100%;
-    margin-top: auto; /* Прижимает нижнюю группу к низу, но с учетом отступа сверху */
-}
-
-.cart-item__info-left {
-    display: flex;
-    flex-direction: column;  /* Элементы встают вертикально друг под другом */
-    align-items: flex-start; /* Выравнивание по левому краю */
-    gap: 16px;               /* Расстояние между строками ровно 16px, как у верхнего блока */
-}
-
-.cart-item__size-row, 
-.cart-item__qty-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
-    color: rgba(0, 0, 0, 0.8);
-}
-
-.cart-item__qty-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* Цена — теперь всегда справа */
-.cart-item__price {
-    font-family: 'SF Compact Rounded', 'SF Compact Display', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    color: rgba(0, 0, 0, 0.8);
-    margin-left: auto; /* Это главное свойство, которое держит цену справа */
-}
-
-.cart-right-panel__inner {
-    border: 1px solid #D3D3D3;    /* Светло-серая граница как у товаров */
-    border-radius: 2px;           /* Аккуратные скругленные углы */
-    background: #FFFFFF;          /* Белый фон */
-    padding: 30px 25px;           /* Отступы внутри, чтобы текст не прилипал */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    width: 100%;                  /* На всю ширину родителя */
-    box-sizing: border-box;       /* Чтобы padding не увеличивал ширину */
-}
-
 .social-block {
     display: flex;
     flex-direction: column;
@@ -339,7 +229,6 @@
     left: calc(50% - 183px / 2 - 149.5px);
     top: 2667px;
 }
-
 .social-block__button {
     display: flex;
     justify-content: center;
@@ -349,16 +238,13 @@
     box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     cursor: pointer;
-    margin-top: 0;
 }
-
 .social-block__button-text {
     font-weight: 500;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.8);
     white-space: nowrap;
 }
-
 .social-block__title {
     width: 147px;
     height: 19px;
@@ -368,7 +254,6 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.8);
 }
-
 .social-block__link {
     width: 183px;
     height: 19px;
@@ -379,7 +264,6 @@
     color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
-
 .info-block {
     display: flex;
     flex-direction: column;
@@ -391,7 +275,6 @@
     left: calc(50% - 229px / 2 + 172.5px);
     top: 2667px;
 }
-
 .info-block__button {
     display: flex;
     justify-content: center;
@@ -401,16 +284,13 @@
     box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     cursor: pointer;
-    margin-top: 0;
 }
-
 .info-block__button-text {
     font-weight: 500;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.8);
     white-space: nowrap;
 }
-
 .info-block__title {
     width: 193px;
     height: 19px;
@@ -420,7 +300,6 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.8);
 }
-
 .info-block__link {
     width: 229px;
     height: 19px;
