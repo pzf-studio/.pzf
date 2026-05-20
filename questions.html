@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anton Shell - Вопросы</title>
+    <link rel="stylesheet" href="questions.css">
+</head>
+<body>
+    <div class="home questions-page">
+
+        <!-- Логотипы (пути к картинкам сохраните из index.html) -->
+        <div class="logo"></div>
+        <div class="logo logo--right"></div>
+
+        <!-- Меню -->
+        <div class="menu--default" id="menuDefault">
+            <div class="menu__highlight-rectangle" id="highlightRect"></div>
+            <div class="menu__inner">
+                <span class="menu__item" data-menu="novelties">НОВИНКИ</span>
+                <span class="menu__item" data-menu="designers">ДИЗАЙНЕРЫ</span>
+                <span class="menu__item">МУЖСКОЕ</span>
+                <span class="menu__item">ЖЕНСКОЕ</span>
+                <span class="menu__item">СКИДКИ</span>
+            </div>
+        </div>
+
+        <!-- Выпадающие меню (для работы JS, оставлены из index.html) -->
+        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--active">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="designers-grid">
+                <div class="designers-col">
+                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
+                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
+                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
+                    <span>Guidi</span>
+                </div>
+                <div class="designers-col">
+                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
+                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
+                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
+                    <span>424</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
+            <div class="menu-dropdown__top">
+                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
+                <span class="menu-dropdown__item menu-dropdown__item--active">ДИЗАЙНЕРЫ</span>
+                <span class="menu-dropdown__item">МУЖСКОЕ</span>
+                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
+                <span class="menu-dropdown__item">СКИДКИ</span>
+            </div>
+            <div class="novelties-grid">
+                <div class="novelties-col">
+                    <span class="novelties-title">Коллекции</span>
+                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
+                    <span>Мой выбор</span><span>Все товары</span>
+                </div>
+                <div class="novelties-col">
+                    <span class="novelties-title">Категории</span>
+                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
+                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
+                    <span>Сумки</span><span>Шорты и юбки</span><span>Головные уборы</span>
+                </div>
+            </div>
+            <div class="search-block">
+                <div class="search-block__icon"></div>
+                <span class="search-block__placeholder">Поиск</span>
+            </div>
+        </div>
+
+        <!-- Боковая кнопка ПОИСК/КОРЗИНА -->
+        <div class="side-button" id="sideButton">
+            <div class="side-button__inner">
+                <span class="side-button__text">ПОИСК</span>
+                <span class="side-button__text">КОРЗИНА</span>
+            </div>
+        </div>
+
+        <!-- ====== ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ ВОПРОСЫ ====== -->
+        <div class="section-title section-title--questions">ВОПРОСЫ</div>
+
+        <div class="faq-container">
+            <!-- Вопрос 1: Раскрыт по умолчанию -->
+            <div class="faq-item active">
+                <div class="faq-header">
+                    <span class="faq-question">КАК СДЕЛАТЬ ЗАКАЗ</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Anton Shell — молодой байер из Москвы, превращающий продажи в искусство.</p>
+                    <p>Начиная свой путь с китайских платформ в 15 лет, он быстро понял разницу между массовым рынком и настоящим стилем. Теперь доставляет вещи из Европы, США и Великобритании, собирая гардеробы, которые говорят громче слов.</p>
+                    <p>Визуал — его оружие. Продуманная стилизация, сильные промо-съемки, точный вкус.</p>
+                    <p>За два года работы Антон успел посотрудничать с многими брендами: Jaded London, Racer Worldwide, Alice Hollywood, Nofaithstudios, Project gr, Yori Sport и другие.</p>
+                    <p>Антон не просто продает одежду — он продает образ жизни.</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="faq-question">СКОЛЬКО СТОИТ ДОСТАВКА</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Стоимость доставки рассчитывается индивидуально, в зависимости от региона и веса заказа.</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 3 -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="faq-question">ТЕМА 2</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>ОТВЕТ 2</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 4 -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="faq-question">ТЕМА 3</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>ОТВЕТ 3</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 5 -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="faq-question">ТЕМА 4</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>ОТВЕТ 3</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 6 -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="faq-question">ТЕМА 5</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>ОТВЕТ 4</p>
+                </div>
+            </div>
+            
+            <!-- Вопрос 7 -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span class="faq-question">ТЕМА 5</span>
+                    <div class="faq-btn">
+                        <svg class="faq-icon" width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10L8.5 2L16 10" stroke="rgba(0, 0, 0, 0.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>ОТВЕТ 5</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Футер: Социальные сети -->
+        <div class="social-block">
+            <div class="social-block__button">
+                <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="social-block__title">СОЦИАЛЬНЫЕ СЕТИ</span>
+            <span class="social-block__link">Telegram</span>
+            <span class="social-block__link">Instagram</span>
+            <span class="social-block__link">VK</span>
+        </div>
+
+        <!-- Футер: Полезная информация -->
+        <div class="info-block">
+            <div class="info-block__button">
+                <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>
+            </div>
+            <span class="info-block__title">ПОЛЕЗНАЯ ИНФОРМАЦИЯ</span>
+            <span class="info-block__link">Обо мне</span>
+            <span class="info-block__link">Отзывы</span>
+            <span class="info-block__link">Вопросы</span>
+            <span class="info-block__link">Публичная оферта</span>
+        </div>
+
+    </div>
+
+    <script src="questions.js"></script>
+</body>
+</html>

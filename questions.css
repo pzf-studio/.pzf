@@ -29,6 +29,7 @@ body {
     align-items: flex-start;
 }
 
+/* Главный контейнер */
 .home {
     position: relative;
     width: 1440px;
@@ -38,11 +39,12 @@ body {
     flex-shrink: 0;
 }
 
-.designers-page {
-    height: 2200px;
+/* Высота страницы Вопросы */
+.home.questions-page {
+    height: 1546px;
 }
 
-/* ========== HEADER (из style.css) ========== */
+/* ====== ЛОГОТИПЫ И МЕНЮ ====== */
 .logo {
     position: absolute;
     width: 325px;
@@ -99,6 +101,18 @@ body {
     white-space: nowrap;
 }
 
+.menu__highlight-rectangle {
+    position: absolute;
+    width: 94px;
+    height: 35px;
+    background: rgba(205, 205, 205, 0.3);
+    border-radius: 10px;
+    pointer-events: none;
+    transition: left 0.3s ease, top 0.3s ease;
+    z-index: 1;
+}
+
+/* ====== ВЫПАДАЮЩИЕ МЕНЮ ====== */
 .menu-dropdown {
     position: absolute;
     width: 498px;
@@ -111,7 +125,6 @@ body {
     z-index: 19;
     display: none;
 }
-
 .menu-dropdown__top {
     display: flex;
     justify-content: center;
@@ -123,7 +136,6 @@ body {
     left: 18px;
     top: 15px;
 }
-
 .menu-dropdown__item {
     font-weight: 500;
     font-size: 16px;
@@ -132,13 +144,11 @@ body {
     color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
-
 .menu-dropdown__item--active {
     background: rgba(205, 205, 205, 0.3);
     border-radius: 10px;
     padding: 8px 10px;
 }
-
 .designers-grid {
     position: absolute;
     width: 349px;
@@ -148,13 +158,11 @@ body {
     display: flex;
     gap: 100px;
 }
-
 .designers-col {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
-
 .designers-col span {
     font-weight: 400;
     font-size: 14px;
@@ -162,7 +170,6 @@ body {
     color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
 }
-
 .novelties-grid {
     position: absolute;
     width: 338px;
@@ -172,13 +179,11 @@ body {
     display: flex;
     gap: 110px;
 }
-
 .novelties-col {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-
 .novelties-title {
     font-weight: 500;
     font-size: 16px;
@@ -186,14 +191,12 @@ body {
     color: rgba(0, 0, 0, 0.8);
     margin-bottom: 5px;
 }
-
 .novelties-col span:not(.novelties-title) {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     cursor: pointer;
 }
-
 .search-block {
     position: absolute;
     width: 200px;
@@ -206,13 +209,11 @@ body {
     align-items: center;
     padding: 0 10px;
 }
-
 .search-block__icon {
     width: 23px;
     height: 23px;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>') center / contain no-repeat;
 }
-
 .search-block__placeholder {
     font-weight: 300;
     font-size: 16px;
@@ -221,6 +222,7 @@ body {
     user-select: none;
 }
 
+/* ====== БОКОВАЯ КНОПКА (ПОИСК/КОРЗИНА) ====== */
 .side-button {
     position: absolute;
     width: 180px;
@@ -236,7 +238,6 @@ body {
     padding: 0 18px;
     z-index: 20;
 }
-
 .side-button__inner {
     display: flex;
     flex-direction: row;
@@ -246,7 +247,6 @@ body {
     width: auto;
     height: auto;
 }
-
 .side-button__text {
     font-weight: 500;
     font-size: 16px;
@@ -256,101 +256,92 @@ body {
     white-space: nowrap;
 }
 
-.side-button--novelties {
-    width: 49px;
-    height: 370px;
-    right: 361px;
+/* ====== ЗАГОЛОВОК СТРАНИЦЫ ====== */
+.section-title--questions {
+    position: absolute;
+    width: 186px;
+    height: 48px;
+    left: calc(50% - 186px/2);
+    top: 109px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 48px;
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+/* ====== АККОРДЕОН (ВОПРОСЫ/ОТВЕТЫ) ====== */
+.faq-container {
+    position: absolute;
+    left: 424px;
+    top: 215px;
+    width: 620px;
+    display: flex;
     flex-direction: column;
+    gap: 25px;
 }
 
-.menu__highlight-rectangle {
-    position: absolute;
-    width: 94px;
-    height: 35px;
-    background: rgba(205, 205, 205, 0.3);
-    border-radius: 10px;
-    pointer-events: none;
-    transition: left 0.3s ease, top 0.3s ease;
-    z-index: 1;
+.faq-item {
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 10px;
 }
 
-/* ========== КОНТЕНТ ДИЗАЙНЕРОВ ========== */
-.designers-content {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    padding: 0 40px;
-}
-
-/* Алфавит */
-.alphabet-nav {
-    width: 1012px;
-    margin: 40px auto 20px auto;
+.faq-header {
     display: flex;
     justify-content: space-between;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 31px;
-    letter-spacing: 0.34em;
-    color: #000000;
-}
-
-.letter {
+    align-items: center;
     cursor: pointer;
-    transition: color 0.2s;
+    padding: 8px 0;
 }
 
-.letter:hover, .letter.active {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Сетка брендов */
-.brands-container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 30px;
-    margin-top: 20px;
-    margin-bottom: 80px;
-}
-
-.brand-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.letter-header {
+.faq-question {
     font-weight: 500;
-    font-size: 26px;
-    line-height: 31px;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.faq-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.1), inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 15px;
+    padding-right: 50px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-answer p {
     margin-bottom: 15px;
 }
 
-/* ========== ИСПРАВЛЕНИЕ: УБИРАЕМ ТОЧКИ ПЕРЕД НАЗВАНИЯМИ ========== */
-.brand-list {
-    list-style: none;    /* убираем маркеры списка */
-    padding: 0;
-    margin: 0;
-}
-
-.brand-list li {
-    list-style: none;    /* на всякий случай для каждого элемента */
-}
-
-.brand-list li a {
-    font-size: 18px;
-    line-height: 31px;
-    color: #000000;
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
-
-.brand-list li a:hover {
-    opacity: 0.7;
-}
-
-/* ========== FOOTER (из style.css) ========== */
+/* ====== ФУТЕР ====== */
 .social-block {
     display: flex;
     flex-direction: column;
@@ -359,8 +350,8 @@ body {
     position: absolute;
     width: 183px;
     height: 199px;
-    left: calc(50% - 183px / 2 - 149.5px);
-    bottom: 100px;
+    left: calc(50% - 183px/2 - 172.5px);
+    bottom: 90px;
 }
 
 .social-block__button {
@@ -374,7 +365,6 @@ body {
     cursor: pointer;
     margin-top: 0;
 }
-
 .social-block__button-text {
     font-weight: 500;
     font-size: 16px;
@@ -411,8 +401,8 @@ body {
     position: absolute;
     width: 229px;
     height: 249px;
-    left: calc(50% - 229px / 2 + 172.5px);
-    bottom: 100px;
+    left: calc(50% - 229px/2 + 149.5px);
+    bottom: 40px;
 }
 
 .info-block__button {
@@ -426,7 +416,6 @@ body {
     cursor: pointer;
     margin-top: 0;
 }
-
 .info-block__button-text {
     font-weight: 500;
     font-size: 16px;
