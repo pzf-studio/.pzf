@@ -198,22 +198,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// navigation.js
 (function() {
-    // Проверяем, не добавлена ли уже панель
     if (document.getElementById('global-nav-panel')) return;
 
-    // Текущий путь
     const currentPath = window.location.pathname;
     const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
 
-    // Функция определения активной страницы
     function isActive(pageFileName) {
         if (pageFileName === 'index.html' && (fileName === 'index.html' || fileName === '')) return true;
         return fileName === pageFileName;
     }
 
-    // Создаём элементы панели
     const navPanel = document.createElement('div');
     navPanel.id = 'global-nav-panel';
     navPanel.innerHTML = `
@@ -226,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
 
-    // Добавляем стили для панели (создаём тег style, если его нет)
     if (!document.getElementById('global-nav-styles')) {
         const style = document.createElement('style');
         style.id = 'global-nav-styles';
@@ -293,6 +287,5 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
 
-    // Вставляем панель в body
     document.body.appendChild(navPanel);
 })();

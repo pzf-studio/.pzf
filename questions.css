@@ -29,7 +29,6 @@ body {
     align-items: flex-start;
 }
 
-/* Главный контейнер */
 .home {
     position: relative;
     width: 1440px;
@@ -39,12 +38,10 @@ body {
     flex-shrink: 0;
 }
 
-/* Высота страницы Вопросы */
 .home.questions-page {
     height: 1546px;
 }
 
-/* ====== ЛОГОТИПЫ И МЕНЮ ====== */
 .logo {
     position: absolute;
     width: 325px;
@@ -112,7 +109,6 @@ body {
     z-index: 1;
 }
 
-/* ====== ВЫПАДАЮЩИЕ МЕНЮ ====== */
 .menu-dropdown {
     position: absolute;
     width: 498px;
@@ -222,7 +218,6 @@ body {
     user-select: none;
 }
 
-/* ====== БОКОВАЯ КНОПКА (ПОИСК/КОРЗИНА) ====== */
 .side-button {
     position: absolute;
     width: 180px;
@@ -256,7 +251,6 @@ body {
     white-space: nowrap;
 }
 
-/* ====== ЗАГОЛОВОК СТРАНИЦЫ ====== */
 .section-title--questions {
     position: absolute;
     width: 186px;
@@ -270,7 +264,6 @@ body {
     text-align: center;
 }
 
-/* ====== АККОРДЕОН (ВОПРОСЫ/ОТВЕТЫ) ====== */
 .faq-container {
     position: absolute;
     left: 424px;
@@ -341,7 +334,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* ====== ФУТЕР ====== */
 .social-block {
     display: flex;
     flex-direction: column;

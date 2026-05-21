@@ -42,7 +42,6 @@ body {
     height: 2200px;
 }
 
-/* ========== HEADER (из style.css) ========== */
 .logo {
     position: absolute;
     width: 325px;
@@ -276,7 +275,6 @@ body {
     z-index: 1;
 }
 
-/* ========== КОНТЕНТ ДИЗАЙНЕРОВ ========== */
 .designers-content {
     position: absolute;
     top: 80px;
@@ -285,7 +283,6 @@ body {
     padding: 0 40px;
 }
 
-/* Алфавит */
 .alphabet-nav {
     width: 1012px;
     margin: 40px auto 20px auto;
@@ -308,7 +305,6 @@ body {
     color: #333;
 }
 
-/* Сетка брендов */
 .brands-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -329,15 +325,14 @@ body {
     margin-bottom: 15px;
 }
 
-/* ========== ИСПРАВЛЕНИЕ: УБИРАЕМ ТОЧКИ ПЕРЕД НАЗВАНИЯМИ ========== */
 .brand-list {
-    list-style: none;    /* убираем маркеры списка */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .brand-list li {
-    list-style: none;    /* на всякий случай для каждого элемента */
+    list-style: none;
 }
 
 .brand-list li a {
@@ -352,7 +347,6 @@ body {
     opacity: 0.7;
 }
 
-/* ========== FOOTER (из style.css) ========== */
 .social-block {
     display: flex;
     flex-direction: column;

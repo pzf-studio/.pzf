@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const home = document.querySelector('.home');
     let currentScale = 1;
 
-    // --- Масштабирование .home на всю ширину окна ---
     function scaleHome() {
         if (!home) return;
         const windowWidth = window.innerWidth;
@@ -17,13 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
     scaleHome();
     window.addEventListener('resize', function() {
         scaleHome();
-        // После изменения масштаба обновляем позицию подсветки для активного пункта
         const activeItem = document.querySelector('.menu__item[data-menu="novelties"]') ||
                            document.querySelector('.menu__item--active');
         if (activeItem) moveHighlight(activeItem);
     });
 
-    // --- Меню и выпадающие списки ---
     const menuDefault = document.getElementById('menuDefault');
     const dropdownDesigners = document.getElementById('dropdownDesigners');
     const dropdownNovelties = document.getElementById('dropdownNovelties');
@@ -65,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- ЛОГИКА ДЛЯ АЛФАВИТА ---
     const letters = document.querySelectorAll('.alphabet-nav .letter');
     letters.forEach(letter => {
         letter.addEventListener('click', function() {
@@ -74,17 +70,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- Клик по элементам меню (для демонстрации) ---
     document.querySelectorAll('.menu__item, .menu-dropdown__item').forEach(item => {
         item.addEventListener('click', function(e) {
             if (this.dataset.menu) return;
             e.preventDefault();
-            // Здесь можно добавить реальную навигацию
             console.log(`Переход в раздел: ${this.textContent.trim()}`);
         });
     });
 
-    // --- Клик по ссылкам в футере ---
     document.querySelectorAll('.social-block__link, .info-block__link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -92,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- Выделение пунктов меню (прямоугольник) с учётом масштаба ---
     const highlightRect = document.getElementById('highlightRect');
     const menuItems = document.querySelectorAll('.menu__item');
 
@@ -111,27 +103,23 @@ document.addEventListener('DOMContentLoaded', function() {
         highlightRect.style.width = (width + 20) + 'px';
     }
 
-    // Устанавливаем начальную подсветку на "НОВИНКИ"
     setTimeout(() => {
         const defaultActive = document.querySelector('.menu__item[data-menu="novelties"]');
         if (defaultActive) moveHighlight(defaultActive);
     }, 100);
 
-    // Наведение мышью — перемещаем подсветку
     menuItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
             moveHighlight(this);
         });
     });
 
-    // Клик — также перемещаем подсветку и оставляем её на выбранном пункте
     menuItems.forEach(item => {
         item.addEventListener('click', function() {
             moveHighlight(this);
         });
     });
 
-    // Дополнительная синхронизация при открытии выпадающих меню
     document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
         item.addEventListener('click', function() {
             setTimeout(() => moveHighlight(this), 50);
@@ -139,22 +127,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// navigation.js
 (function() {
-    // Проверяем, не добавлена ли уже панель
     if (document.getElementById('global-nav-panel')) return;
 
-    // Текущий путь
     const currentPath = window.location.pathname;
     const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
 
-    // Функция определения активной страницы
     function isActive(pageFileName) {
         if (pageFileName === 'index.html' && (fileName === 'index.html' || fileName === '')) return true;
         return fileName === pageFileName;
     }
 
-    // Создаём элементы панели
     const navPanel = document.createElement('div');
     navPanel.id = 'global-nav-panel';
     navPanel.innerHTML = `
@@ -167,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
 
-    // Добавляем стили для панели (создаём тег style, если его нет)
     if (!document.getElementById('global-nav-styles')) {
         const style = document.createElement('style');
         style.id = 'global-nav-styles';
@@ -234,6 +216,5 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
 
-    // Вставляем панель в body
     document.body.appendChild(navPanel);
 })();

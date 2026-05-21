@@ -1,4 +1,3 @@
-// cart.js — полная копия script.js (без карусели), только масштабирование, меню, подсветка
 document.addEventListener('DOMContentLoaded', function() {
     const home = document.querySelector('.home');
     let currentScale = 1;
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (activeItem) moveHighlight(activeItem);
     });
 
-    // --- Меню и выпадающие списки ---
     const menuDefault = document.getElementById('menuDefault');
     const dropdownDesigners = document.getElementById('dropdownDesigners');
     const dropdownNovelties = document.getElementById('dropdownNovelties');
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Подсветка прямоугольника ---
     const highlightRect = document.getElementById('highlightRect');
     const menuItems = document.querySelectorAll('.menu__item');
 
@@ -95,22 +92,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// navigation.js
 (function() {
-    // Проверяем, не добавлена ли уже панель
     if (document.getElementById('global-nav-panel')) return;
 
-    // Текущий путь
     const currentPath = window.location.pathname;
     const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
 
-    // Функция определения активной страницы
     function isActive(pageFileName) {
         if (pageFileName === 'index.html' && (fileName === 'index.html' || fileName === '')) return true;
         return fileName === pageFileName;
     }
 
-    // Создаём элементы панели
     const navPanel = document.createElement('div');
     navPanel.id = 'global-nav-panel';
     navPanel.innerHTML = `
@@ -123,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
 
-    // Добавляем стили для панели (создаём тег style, если его нет)
     if (!document.getElementById('global-nav-styles')) {
         const style = document.createElement('style');
         style.id = 'global-nav-styles';
@@ -190,6 +181,5 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
 
-    // Вставляем панель в body
     document.body.appendChild(navPanel);
 })();
