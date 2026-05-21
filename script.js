@@ -279,3 +279,102 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// navigation.js
+(function() {
+    // Проверяем, не добавлена ли уже панель
+    if (document.getElementById('global-nav-panel')) return;
+
+    // Текущий путь
+    const currentPath = window.location.pathname;
+    const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+
+    // Функция определения активной страницы
+    function isActive(pageFileName) {
+        if (pageFileName === 'index.html' && (fileName === 'index.html' || fileName === '')) return true;
+        return fileName === pageFileName;
+    }
+
+    // Создаём элементы панели
+    const navPanel = document.createElement('div');
+    navPanel.id = 'global-nav-panel';
+    navPanel.innerHTML = `
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn ${isActive('index.html') ? 'active' : ''}">Главная</a>
+            <a href="cart.html" class="nav-btn ${isActive('cart.html') ? 'active' : ''}">Корзина</a>
+            <a href="case.html" class="nav-btn ${isActive('case.html') ? 'active' : ''}">Карточка товара</a>
+            <a href="designers.html" class="nav-btn ${isActive('designers.html') ? 'active' : ''}">Дизайнеры</a>
+            <a href="questions.html" class="nav-btn ${isActive('questions.html') ? 'active' : ''}">Вопросы</a>
+        </div>
+    `;
+
+    // Добавляем стили для панели (создаём тег style, если его нет)
+    if (!document.getElementById('global-nav-styles')) {
+        const style = document.createElement('style');
+        style.id = 'global-nav-styles';
+        style.textContent = `
+            #global-nav-panel {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                z-index: 10000;
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(8px);
+                border-radius: 40px;
+                padding: 8px 16px;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                border: 1px solid rgba(255,255,255,0.2);
+                transition: opacity 0.2s;
+            }
+            .nav-buttons {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .nav-btn {
+                color: #fff;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 500;
+                padding: 6px 14px;
+                border-radius: 30px;
+                background: rgba(255,255,255,0.1);
+                transition: all 0.2s ease;
+                letter-spacing: 0.3px;
+                white-space: nowrap;
+            }
+            .nav-btn:hover {
+                background: rgba(255,255,255,0.25);
+                transform: translateY(-1px);
+            }
+            .nav-btn.active {
+                background: white;
+                color: black;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            }
+            /* Адаптивность для маленьких экранов */
+            @media (max-width: 700px) {
+                #global-nav-panel {
+                    bottom: 10px;
+                    left: 10px;
+                    right: 10px;
+                    padding: 6px 12px;
+                }
+                .nav-buttons {
+                    gap: 8px;
+                    justify-content: center;
+                }
+                .nav-btn {
+                    font-size: 12px;
+                    padding: 4px 10px;
+                    white-space: nowrap;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Вставляем панель в body
+    document.body.appendChild(navPanel);
+})();
