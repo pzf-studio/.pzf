@@ -652,3 +652,415 @@ body {
     transition: left 0.3s ease, top 0.3s ease;
     z-index: 1;
 }
+
+/* ===== СТИЛИ ДЛЯ ТИТУЛЬНОЙ СТРАНИЦЫ (SPLASH) ===== */
+#splashOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: #ffffff;
+    overflow: hidden;
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+        opacity 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#splashOverlay.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.splash-inner {
+    position: relative;
+    width: 1440px;
+    height: 880px;
+    flex-shrink: 0;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: scale(1);
+    transform-origin: center center;
+}
+
+.splash-bg {
+    position: absolute;
+    width: 1440px;
+    height: 960px;
+    left: 0px;
+    top: -24px;
+    background: url('./static/images/Preset.png') center / cover no-repeat;
+}
+
+.splash-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 15px;
+    gap: 10px;
+    position: absolute;
+    width: 55px;
+    height: 309px;
+    left: 566px;
+    top: 765px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transform: matrix(0, 1, 1, 0, 0, 0);
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+    user-select: none;
+}
+
+.splash-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.splash-button span {
+    width: 273px;
+    height: 29px;
+    font-family: 'SF Compact Display', 'SF Compact Rounded', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgba(255, 255, 255, 0.8);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* ===== АДАПТИВ ДЛЯ HOME ===== */
+@media (max-width: 1440px) {
+    .home {
+        transform: scale(1) !important;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        padding: 0 20px;
+    }
+    .home .logo,
+    .home .logo--right {
+        display: none;
+    }
+    .home .menu--default,
+    .home .menu-dropdown,
+    .home .side-button {
+        position: static;
+        margin: 10px auto;
+        width: 100%;
+        max-width: 498px;
+        height: auto;
+        min-height: 49px;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        right: auto !important;
+    }
+    .home .menu__inner {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    .home .carousel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1440/573;
+        left: auto;
+        top: auto;
+        margin: 20px 0;
+    }
+    .home .carousel__background {
+        display: none;
+    }
+    .home .carousel__track-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        left: auto;
+        top: auto;
+    }
+    .home .carousel__item {
+        flex: 0 0 100%;
+        width: 100%;
+        aspect-ratio: 1440/543;
+    }
+    .home .carousel__track {
+        height: 100%;
+    }
+    .home .arrleft,
+    .home .arrright {
+        position: absolute;
+        width: 40px;
+        height: 70px;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+    }
+    .home .arrright {
+        left: auto;
+        right: 10px;
+    }
+    .home .arrleft svg,
+    .home .arrright svg {
+        width: 100%;
+        height: 100%;
+    }
+    .home .carousel__indicators {
+        position: relative;
+        bottom: auto;
+        margin-top: 10px;
+    }
+    .home .section-title {
+        position: static;
+        margin: 30px auto 10px;
+        width: 100%;
+        text-align: center;
+        height: auto;
+    }
+    .home .watch-all-button {
+        position: static;
+        margin: 0 auto 30px;
+    }
+    .home .products-grid {
+        position: static;
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 0 10px;
+    }
+    .home .product-card {
+        position: static;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 325/577;
+        max-width: 325px;
+        margin: 0 auto;
+    }
+    .home .product-card__bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+    .home .product-card__white-bg {
+        position: absolute;
+        width: calc(100% - 2px);
+        height: 143px;
+        left: 1px;
+        top: calc(100% - 143px - 1px);
+    }
+    .home .product-card__image {
+        position: absolute;
+        width: calc(100% - 2px);
+        height: calc(100% - 143px - 2px);
+        left: 1px;
+        top: 1px;
+    }
+    .home .product-card__info {
+        position: absolute;
+        width: calc(100% - 42px);
+        left: 21px;
+        top: calc(100% - 143px + 20px);
+    }
+    .home .social-block,
+    .home .info-block {
+        position: static;
+        width: 100%;
+        max-width: 300px;
+        margin: 30px auto;
+        height: auto;
+        left: auto !important;
+        top: auto !important;
+    }
+    .home .menu__highlight-rectangle {
+        display: none;
+    }
+    .home .menu-dropdown__top {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 8px;
+    }
+    .home .menu-dropdown {
+        height: auto;
+        min-height: 200px;
+        padding-bottom: 20px;
+    }
+    .home .designers-grid,
+    .home .novelties-grid {
+        position: static;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px 10px;
+    }
+    .home .designers-col,
+    .home .novelties-col {
+        flex: 1 1 200px;
+    }
+    .home .search-block {
+        position: static;
+        margin: 10px auto;
+        width: 90%;
+        max-width: 300px;
+    }
+    .home .side-button--novelties {
+        width: 100%;
+        max-width: 49px;
+        height: auto;
+        min-height: 370px;
+        margin: 10px auto;
+    }
+    .home .menu--default {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+    .home .menu-dropdown {
+        display: none !important;
+    }
+    .home .menu-dropdown.menu-dropdown--designers,
+    .home .menu-dropdown.menu-dropdown--novelties {
+        display: none !important;
+    }
+}
+
+/* ===== АДАПТИВ ДЛЯ ТИТУЛЬНОЙ СТРАНИЦЫ ===== */
+@media (max-width: 1440px) {
+    .splash-inner {
+        width: 100vw;
+        height: 100vh;
+        max-width: 1440px;
+        max-height: 880px;
+    }
+    .splash-bg {
+        width: 100vw;
+        height: calc(100vh + 24px);
+        max-width: 1440px;
+        max-height: 960px;
+        top: -24px;
+        left: 0;
+    }
+    .splash-button {
+        left: 39.3vw;
+        top: 87vh;
+        width: 55px;
+        height: 309px;
+    }
+    .splash-button span {
+        font-size: clamp(16px, 2vw, 24px);
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .splash-button {
+        left: 50%;
+        top: auto;
+        bottom: 40px;
+        transform: matrix(0, 1, 1, 0, 0, 0) translateX(-50%);
+        width: 40px;
+        height: 200px;
+    }
+    .splash-button span {
+        font-size: 14px;
+        width: auto;
+    }
+}
+
+/* ===== ТИТУЛЬНАЯ СТРАНИЦА (SPLASH) ===== */
+#splashOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: url('./static/images/Preset.png') center/cover no-repeat;
+    overflow: hidden;
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+                opacity 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#splashOverlay.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Кнопка — горизонтальная, текст горизонтальный */
+.splash-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 24px;
+    gap: 10px;
+    width: 309px;          /* горизонтальная кнопка */
+    height: 55px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+    user-select: none;
+    position: absolute;
+    left: 50%;
+    top: 85%;
+    transform: translate(-50%, -50%);
+    /* Убрали поворот и вертикальную ориентацию */
+}
+
+.splash-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.splash-button span {
+    font-family: 'SF Compact Display', 'SF Compact Rounded', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* Адаптив для кнопки на маленьких экранах */
+@media (max-width: 700px) {
+    .splash-button {
+        width: 240px;
+        height: 50px;
+        font-size: 18px;
+        top: 80%;
+    }
+    .splash-button span {
+        font-size: 18px;
+    }
+}

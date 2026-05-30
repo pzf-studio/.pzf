@@ -1,4 +1,52 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // ============================================================
+    // 1. ТИТУЛЬНАЯ СТРАНИЦА (SPLASH)
+    // ============================================================
+    const splash = document.getElementById('splashOverlay');
+    const enterBtn = document.getElementById('enterBtn');
+    let splashDismissed = false;
+
+    function dismissSplash() {
+        if (splashDismissed) return;
+        splashDismissed = true;
+        splash.classList.add('hidden');
+        setTimeout(() => {
+            if (splash.parentNode) {
+                splash.style.display = 'none';
+            }
+        }, 1000);
+    }
+
+    enterBtn.addEventListener('click', dismissSplash);
+
+    let wheelTriggered = false;
+    document.addEventListener('wheel', function(e) {
+        if (splashDismissed) return;
+        if (e.deltaY > 10 && !wheelTriggered) {
+            wheelTriggered = true;
+            dismissSplash();
+        }
+    }, { passive: true });
+
+    let touchStartY = 0;
+    document.addEventListener('touchstart', function(e) {
+        if (splashDismissed) return;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+        if (splashDismissed) return;
+        const deltaY = e.touches[0].clientY - touchStartY;
+        if (deltaY < -30) {
+            dismissSplash();
+        }
+    }, { passive: true });
+
+    // ============================================================
+    // 2. ОСНОВНАЯ СТРАНИЦА (HOME) ЛОГИКА
+    // ============================================================
+
     const home = document.querySelector('.home');
     let currentScale = 1;
 
@@ -88,16 +136,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     buildTrack();
 
-    function updateTrackPosition(animate = true) {
+    function updateTrackPosition(animate) {
         if (!animate) {
             track.style.transition = 'none';
         }
-        const offset = -currentTrackIndex * 1440; 
+        const offset = -currentTrackIndex * 1440;
         track.style.transform = `translateX(${offset}px)`;
         if (!animate) {
             track.offsetHeight;
             track.style.transition = 'transform 0.5s ease';
         }
+    }
+
+    function updateIndicators() {
+        indicators.forEach((ind, idx) => {
+            ind.classList.toggle('carousel__indicator--active', idx === realIndex);
+        });
     }
 
     function correctInfinite() {
@@ -113,8 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateIndicators();
         }
     }
-
-
 
     function goToSlide(newRealIndex) {
         if (isTransitioning) return;
@@ -245,6 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ============================================================
+// 3. НАВИГАЦИОННАЯ ПАНЕЛЬ (добавляется в DOM)
+// ============================================================
 (function() {
     if (document.getElementById('global-nav-panel')) return;
 
@@ -312,7 +367,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: black;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             }
-            /* Адаптивность для маленьких экранов */
             @media (max-width: 700px) {
                 #global-nav-panel {
                     bottom: 10px;
