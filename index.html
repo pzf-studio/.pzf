@@ -8,21 +8,9 @@
 </head>
 <body>
 
-    <!-- ===== ТИТУЛЬНАЯ СТРАНИЦА (SPLASH) ===== -->
-    <div id="splashOverlay">
-        <!-- Фоновая картинка задана в CSS через background-image -->
-        <div class="splash-button" id="enterBtn">
-            <span>НАЖМИТЕ ЧТОБЫ ВОЙТИ</span>
-        </div>
-    </div>
-
-    <!-- ===== ОСНОВНАЯ СТРАНИЦА (HOME) ===== -->
-    <div class="home">
-
-        <div class="logo"></div>
-
-        <div class="logo logo--right"></div>
-
+    <!-- ===== ФИКСИРОВАННЫЙ ХЕДЕР (меню и боковая кнопка) ===== -->
+    <div id="fixed-header">
+        <!-- Основное меню -->
         <div class="menu--default" id="menuDefault">
             <div class="menu__highlight-rectangle" id="highlightRect"></div>
             <div class="menu__inner">
@@ -34,71 +22,39 @@
             </div>
         </div>
 
-        <div class="menu-dropdown menu-dropdown--designers" id="dropdownDesigners">
-            <div class="menu-dropdown__top">
-                <span class="menu-dropdown__item menu-dropdown__item--active">НОВИНКИ</span>
-                <span class="menu-dropdown__item menu-dropdown__item--highlight">ДИЗАЙНЕРЫ</span>
-                <span class="menu-dropdown__item">МУЖСКОЕ</span>
-                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
-                <span class="menu-dropdown__item">СКИДКИ</span>
-            </div>
-            <div class="designers-grid">
-                <div class="designers-col">
-                    <span>Guidi</span><span>Protocol Index</span><span>Ann Demeulemeester</span>
-                    <span>Racer Worldwide</span><span>Jaded London</span><span>Alice Hollywood</span>
-                    <span>Enfants Riches Deprimes</span><span>14th Addiction</span><span>Rombaut</span>
-                    <span>Guidi</span>
-                </div>
-                <div class="designers-col">
-                    <span>Jaded London</span><span>Protocol Index</span><span>Racer Worldwide</span>
-                    <span>Enfants Riches Deprimes</span><span>Alice Hollywood</span><span>Raf Simons</span>
-                    <span>Balenciaga</span><span>Rick Owens</span><span>Смотреть все</span>
-                    <span>424</span>
-                </div>
-            </div>
+        <!-- Универсальный дропдаун -->
+        <div class="menu-dropdown" id="menuDropdown">
+            <div class="menu-dropdown__content" id="dropdownContent"></div>
         </div>
 
-        <div class="menu-dropdown menu-dropdown--novelties" id="dropdownNovelties">
-            <div class="menu-dropdown__top">
-                <span class="menu-dropdown__item menu-dropdown__item--highlight">НОВИНКИ</span>
-                <span class="menu-dropdown__item menu-dropdown__item--active">ДИЗАЙНЕРЫ</span>
-                <span class="menu-dropdown__item">МУЖСКОЕ</span>
-                <span class="menu-dropdown__item">ЖЕНСКОЕ</span>
-                <span class="menu-dropdown__item">СКИДКИ</span>
-            </div>
-            <div class="novelties-grid">
-                <div class="novelties-col">
-                    <span class="novelties-title">Коллекции</span>
-                    <span>Новые поступления</span><span>В наличии</span><span>Под заказ</span>
-                    <span>Мой выбор</span><span>Все товары</span>
-                </div>
-                <div class="novelties-col">
-                    <span class="novelties-title">Категории</span>
-                    <span>Футболки и лонгсливы</span><span>Свитшоты и худи</span><span>Джинсы и штаны</span>
-                    <span>Кроссовки и кеды</span><span>Ремни</span><span>Украшения</span>
-                    <span>Сумки</span><span>Шорты и юбки</span><span>Головные уборы</span>
-                </div>
-            </div>
-            <div class="search-block">
-                <div class="search-block__icon"></div>
-                <span class="search-block__placeholder">Поиск</span>
-            </div>
-        </div>
-
+        <!-- Боковая кнопка -->
         <div class="side-button" id="sideButton">
             <div class="side-button__inner">
                 <span class="side-button__text">ПОИСК</span>
                 <a href="cart.html" class="side-button__text">КОРЗИНА</a>
             </div>
         </div>
+    </div>
 
+    <!-- ===== ТИТУЛЬНАЯ СТРАНИЦА (SPLASH) ===== -->
+    <div id="splashOverlay">
+        <div class="splash-button" id="enterBtn">
+            <span>НАЖМИТЕ ЧТОБЫ ВОЙТИ</span>
+        </div>
+    </div>
+
+    <!-- ===== ОСНОВНАЯ СТРАНИЦА (HOME) ===== -->
+    <div class="home">
+
+        <div class="logo"></div>
+        <div class="logo logo--right"></div>
+
+        <!-- ===== КАРУСЕЛЬ ===== -->
         <div class="carousel">
             <div class="carousel__background"></div>
-
             <div class="carousel__track-container">
                 <div class="carousel__track" id="carouselTrack"></div>
             </div>
-
             <div class="arrleft" id="arrleft">
                 <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_ii_46_11_left)">
@@ -128,7 +84,6 @@
                     </defs>
                 </svg>
             </div>
-
             <div class="arrright" id="arrright">
                 <svg width="87" height="153" viewBox="0 0 87 153" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_ii_46_11_right)">
@@ -156,7 +111,6 @@
                     </defs>
                 </svg>
             </div>
-
             <div class="carousel__indicators" id="carouselIndicators">
                 <div class="carousel__indicator carousel__indicator--active"></div>
                 <div class="carousel__indicator"></div>
@@ -164,12 +118,16 @@
             </div>
         </div>
 
+        <!-- ===== СЕКЦИЯ НОВИНКИ ===== -->
         <div class="section-title">НОВИНКИ</div>
         <div class="watch-all-button" id="watchAllBtn">
             <span class="watch-all-button__text">СМОТРЕТЬ ВСЕ</span>
         </div>
 
+        <!-- ===== СЕТКА ТОВАРОВ ===== -->
         <div class="products-grid">
+            <!-- (все product-card остаются без изменений, я их не переписываю для краткости) -->
+            <!-- ... ваш код product-card ... -->
             <div class="product-card product-card--1">
                 <div class="product-card__bg"></div>
                 <div class="product-card__watermark"></div>
@@ -352,6 +310,7 @@
             </div>
         </div>
 
+        <!-- ===== СОЦИАЛЬНЫЕ СЕТИ ===== -->
         <div class="social-block">
             <div class="social-block__button">
                 <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
@@ -362,6 +321,7 @@
             <span class="social-block__link">VK</span>
         </div>
 
+        <!-- ===== ПОЛЕЗНАЯ ИНФОРМАЦИЯ ===== -->
         <div class="info-block">
             <div class="info-block__button">
                 <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>

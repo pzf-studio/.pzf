@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
 
     // ============================================================
-    // 2. ОСНОВНАЯ СТРАНИЦА (HOME) ЛОГИКА
+    // 2. МАСШТАБИРОВАНИЕ HOME (ТОЛЬКО ДЛЯ КОНТЕНТА, МЕНЮ НЕ ТРОГАЕМ)
     // ============================================================
 
     const home = document.querySelector('.home');
@@ -55,60 +55,72 @@ document.addEventListener('DOMContentLoaded', function() {
         const windowWidth = window.innerWidth;
         const originalWidth = 1440;
         let scale = windowWidth / originalWidth;
-        if (scale < 1) scale = 1;
-        currentScale = scale;
-        home.style.transform = `scale(${scale})`;
-        home.style.transformOrigin = 'top left';
+
+        if (scale < 1) {
+            currentScale = scale;
+            home.style.transform = `scale(${scale})`;
+            home.style.width = '1440px';
+            home.style.transformOrigin = 'top left';
+            home.style.marginLeft = 'auto';
+            home.style.marginRight = 'auto';
+        } else {
+            currentScale = 1;
+            home.style.transform = 'none';
+            home.style.width = '1440px';
+            home.style.marginLeft = 'auto';
+            home.style.marginRight = 'auto';
+        }
     }
 
     scaleHome();
-    window.addEventListener('resize', function() {
-        scaleHome();
-        const activeItem = document.querySelector('.menu__item[data-menu="novelties"]') ||
-                           document.querySelector('.menu__item--active');
-        if (activeItem) moveHighlight(activeItem);
-    });
+    window.addEventListener('resize', scaleHome);
 
+    // ============================================================
+    // 3. ВЫДЕЛЕНИЕ ПРИ НАВЕДЕНИИ (ПРЯМОУГОЛЬНИК) – теперь без деления на currentScale
+    // ============================================================
+
+    const highlightRect = document.getElementById('highlightRect');
+    const menuItems = document.querySelectorAll('.menu__item');
     const menuDefault = document.getElementById('menuDefault');
-    const dropdownDesigners = document.getElementById('dropdownDesigners');
-    const dropdownNovelties = document.getElementById('dropdownNovelties');
-    const sideButton = document.getElementById('sideButton');
 
-    function hideAllDropdowns() {
-        dropdownDesigners.style.display = 'none';
-        dropdownNovelties.style.display = 'none';
-        menuDefault.style.display = 'flex';
-        sideButton.classList.remove('side-button--novelties');
+    highlightRect.style.opacity = '0';
+
+    function moveHighlight(targetItem) {
+        if (!targetItem || !menuDefault) return;
+
+        const menuRect = menuDefault.getBoundingClientRect();
+        const itemRect = targetItem.getBoundingClientRect();
+
+        // Координаты относительно меню (без учёта масштаба, т.к. меню фиксировано)
+        const left = itemRect.left - menuRect.left;
+        const top = itemRect.top - menuRect.top;
+        const width = itemRect.width;
+
+        highlightRect.style.left = (left - 10) + 'px';
+        highlightRect.style.top = (top - 8) + 'px';
+        highlightRect.style.width = (width + 20) + 'px';
+        highlightRect.style.opacity = '1';
     }
 
-    document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
-        item.addEventListener('click', (e) => {
-            const menuType = e.target.dataset.menu;
-            hideAllDropdowns();
-            if (menuType === 'designers') {
-                dropdownDesigners.style.display = 'block';
-                menuDefault.style.display = 'none';
-            } else if (menuType === 'novelties') {
-                dropdownNovelties.style.display = 'block';
-                menuDefault.style.display = 'none';
-                sideButton.classList.add('side-button--novelties');
-            }
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            moveHighlight(this);
         });
     });
 
-    document.querySelectorAll('.menu__item:not([data-menu])').forEach(item => {
-        item.addEventListener('click', hideAllDropdowns);
+    menuDefault.addEventListener('mouseleave', function() {
+        highlightRect.style.opacity = '0';
     });
 
-    dropdownDesigners.addEventListener('click', (e) => {
-        if (e.target.tagName === 'SPAN') hideAllDropdowns();
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            moveHighlight(this);
+        });
     });
 
-    dropdownNovelties.addEventListener('click', (e) => {
-        if (e.target.tagName === 'SPAN' && !e.target.classList.contains('search-block__placeholder')) {
-            hideAllDropdowns();
-        }
-    });
+    // ============================================================
+    // 4. КАРУСЕЛЬ
+    // ============================================================
 
     const images = [
         './static/images/1.png',
@@ -228,6 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     carouselContainer.addEventListener('mouseleave', startAutoPlay);
 
+    // ============================================================
+    // 5. КАРТОЧКИ ТОВАРОВ И КНОПКИ
+    // ============================================================
+
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function() {
             const brand = this.querySelector('.product-card__brand').textContent;
@@ -255,50 +271,93 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const highlightRect = document.getElementById('highlightRect');
-    const menuItems = document.querySelectorAll('.menu__item');
+    // ============================================================
+    // 6. УНИВЕРСАЛЬНЫЙ ДРОПДАУН
+    // ============================================================
 
-    function moveHighlight(targetItem) {
-        if (!targetItem || !menuDefault) return;
+    const menuDropdown = document.getElementById('menuDropdown');
+    const dropdownContent = document.getElementById('dropdownContent');
 
-        const menuRect = menuDefault.getBoundingClientRect();
-        const itemRect = targetItem.getBoundingClientRect();
+    const dropdownData = {
+        novelties: {
+            content: [
+                { title: 'Коллекции', items: ['Новые поступления', 'В наличии', 'Под заказ', 'Мой выбор', 'Все товары'] },
+                { title: 'Категории', items: ['Футболки и лонгсливы', 'Свитшоты и худи', 'Джинсы и штаны', 'Кроссовки и кеды', 'Ремни', 'Украшения', 'Сумки', 'Шорты и юбки', 'Головные уборы'] }
+            ]
+        },
+        designers: {
+            content: [
+                { title: '', items: ['Guidi', 'Protocol Index', 'Ann Demeulemeester', 'Racer Worldwide', 'Jaded London', 'Alice Hollywood', 'Enfants Riches Deprimes', '14th Addiction', 'Rombaut', 'Guidi'] },
+                { title: '', items: ['Jaded London', 'Protocol Index', 'Racer Worldwide', 'Enfants Riches Deprimes', 'Alice Hollywood', 'Raf Simons', 'Balenciaga', 'Rick Owens', 'Смотреть все', '424'] }
+            ]
+        }
+    };
 
-        const left = (itemRect.left - menuRect.left) / currentScale;
-        const top = (itemRect.top - menuRect.top) / currentScale;
-        const width = itemRect.width / currentScale;
+    function renderDropdown(dataKey) {
+        const data = dropdownData[dataKey];
+        if (!data) return;
 
-        highlightRect.style.left = (left - 10) + 'px';
-        highlightRect.style.top = (top - 8) + 'px';
-        highlightRect.style.width = (width + 20) + 'px';
+        dropdownContent.innerHTML = '';
+        data.content.forEach(col => {
+            const colDiv = document.createElement('div');
+            colDiv.className = 'dropdown-col';
+            if (col.title) {
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'dropdown-col-title';
+                titleSpan.textContent = col.title;
+                colDiv.appendChild(titleSpan);
+            }
+            col.items.forEach(itemText => {
+                const itemSpan = document.createElement('span');
+                itemSpan.textContent = itemText;
+                itemSpan.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    alert(`Выбрано: ${itemText}`);
+                    hideDropdown();
+                });
+                colDiv.appendChild(itemSpan);
+            });
+            dropdownContent.appendChild(colDiv);
+        });
+
+        menuDropdown.style.display = 'flex';
     }
 
-    setTimeout(() => {
-        const defaultActive = document.querySelector('.menu__item[data-menu="novelties"]');
-        if (defaultActive) moveHighlight(defaultActive);
-    }, 100);
-
-    menuItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            moveHighlight(this);
-        });
-    });
-
-    menuItems.forEach(item => {
-        item.addEventListener('click', function() {
-            moveHighlight(this);
-        });
-    });
+    function hideDropdown() {
+        menuDropdown.style.display = 'none';
+    }
 
     document.querySelectorAll('.menu__item[data-menu]').forEach(item => {
-        item.addEventListener('click', function() {
-            setTimeout(() => moveHighlight(this), 50);
+        item.addEventListener('click', function(e) {
+            const menuType = this.dataset.menu;
+            if (menuType === 'novelties') {
+                renderDropdown('novelties');
+            } else if (menuType === 'designers') {
+                renderDropdown('designers');
+            } else {
+                hideDropdown();
+            }
         });
     });
-});
+
+    document.querySelectorAll('.menu__item:not([data-menu])').forEach(item => {
+        item.addEventListener('click', hideDropdown);
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!menuDropdown.contains(e.target) && !e.target.closest('.menu--default')) {
+            hideDropdown();
+        }
+    });
+
+    menuDropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+}); // конец DOMContentLoaded
 
 // ============================================================
-// 3. НАВИГАЦИОННАЯ ПАНЕЛЬ (добавляется в DOM)
+// 7. НАВИГАЦИОННАЯ ПАНЕЛЬ (добавляется в DOM)
 // ============================================================
 (function() {
     if (document.getElementById('global-nav-panel')) return;

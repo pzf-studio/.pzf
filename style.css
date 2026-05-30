@@ -6,6 +6,34 @@
     font-display: swap;
 }
 
+/* ===== ЖИДКОЕ СТЕКЛО ДЛЯ ВСЕХ ЭЛЕМЕНТОВ МЕНЮ ===== */
+.menu--default,
+.side-button,
+#side-fixed .side-button {
+    background: rgba(255, 255, 255, 0.03) !important;    /* Почти прозрачный фон */
+    backdrop-filter: blur(30px) !important;               /* Очень сильное размытие (30px) */
+    -webkit-backdrop-filter: blur(30px) !important;       /* Для Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Тонкая стеклянная обводка */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important; /* Глубокая тень */
+    border-radius: 15px;                                   /* Сохраняем закругление */
+    transition: all 0.3s ease;                             /* Плавность при наведении */
+}
+
+/* Опционально: усиление эффекта при наведении */
+.menu--default:hover,
+.side-button:hover,
+#side-fixed .side-button:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Убираем старые тени, чтобы они не конфликтовали */
+.menu--default,
+.side-button,
+#side-fixed .side-button {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -22,11 +50,12 @@ html, body {
 body {
     margin: 0;
     padding: 0;
+    overflow-y: auto;           /* нормальная прокрутка страницы */
     overflow-x: auto;
-    overflow-y: auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
+    min-height: 100vh;
 }
 
 .home {
@@ -35,8 +64,9 @@ body {
     height: 2956px;
     background: #FFFFFF;
     transform-origin: top left;
-    overflow: hidden;
+    overflow: visible;          /* не обрезаем контент */
     flex-shrink: 0;
+    margin: 0 auto;
 }
 
 .logo {
@@ -73,7 +103,7 @@ body {
     align-items: center;
     padding: 15px 18px;
     gap: 10px;
-    z-index: 20;
+    z-index: 30;
 }
 
 .menu__inner {
@@ -95,29 +125,35 @@ body {
     white-space: nowrap;
 }
 
+.menu__highlight-rectangle {
+    position: absolute;
+    width: 94px;
+    height: 35px;
+    background: rgba(205, 205, 205, 0.3);
+    border-radius: 10px;
+    pointer-events: none;
+    transition: left 0.3s ease, top 0.3s ease;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* ===== УНИВЕРСАЛЬНЫЙ ДРОПДАУН ===== */
 .menu-dropdown {
     position: absolute;
     width: 498px;
-    height: 400px;
     left: calc(50% - 498px / 2);
     top: 23px;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    z-index: 19;
+    z-index: 20; /* Поднимаем выше */
     display: none;
-}
-
-.menu-dropdown__top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    position: absolute;
-    width: 462px;
-    height: 19px;
-    left: 18px;
-    top: 15px;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05); /* Почти прозрачный фон */
+    backdrop-filter: blur(30px);           /* Очень сильное размытие */
+    -webkit-backdrop-filter: blur(30px);   /* Поддержка Safari */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Легкая стеклянная обводка */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);  /* Глубокая тень для объёма */
+    border-radius: 15px;
+    padding: 70px 18px 20px 18px;
+    min-height: 100px;
 }
 
 .menu-dropdown__item {
@@ -127,31 +163,34 @@ body {
     text-align: center;
     color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
+    white-space: nowrap;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: background 0.2s;
 }
 
 .menu-dropdown__item--active {
     background: rgba(205, 205, 205, 0.3);
-    border-radius: 10px;
-    padding: 8px 10px;
 }
 
-.designers-grid {
-    position: absolute;
-    width: 349px;
-    height: 296px;
-    left: 75px;
-    top: 74px;
+.menu-dropdown__item--highlight {
+    background: rgba(205, 205, 205, 0.2);
+}
+
+.menu-dropdown__content {
     display: flex;
+    justify-content: center;
     gap: 100px;
+    padding: 10px 10px 5px;
 }
 
-.designers-col {
+.dropdown-col {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
-.designers-col span {
+.dropdown-col span {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
@@ -159,23 +198,7 @@ body {
     cursor: pointer;
 }
 
-.novelties-grid {
-    position: absolute;
-    width: 338px;
-    height: 294px;
-    left: 80px;
-    top: 74px;
-    display: flex;
-    gap: 110px;
-}
-
-.novelties-col {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.novelties-title {
+.dropdown-col-title {
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
@@ -183,40 +206,7 @@ body {
     margin-bottom: 5px;
 }
 
-.novelties-col span:not(.novelties-title) {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    cursor: pointer;
-}
-
-.search-block {
-    position: absolute;
-    width: 200px;
-    height: 35px;
-    right: 30px;
-    top: 15px;
-    background: rgba(205, 205, 205, 0.3);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-}
-
-.search-block__icon {
-    width: 23px;
-    height: 23px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>') center / contain no-repeat;
-}
-
-.search-block__placeholder {
-    font-weight: 300;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.6);
-    margin-left: 8px;
-    user-select: none;
-}
-
+/* ===== БОКОВАЯ КНОПКА ===== */
 .side-button {
     position: absolute;
     width: 180px;
@@ -254,13 +244,7 @@ body {
     color: inherit;
 }
 
-.side-button--novelties {
-    width: 49px;
-    height: 370px;
-    right: 361px;
-    flex-direction: column;
-}
-
+/* ===== КАРУСЕЛЬ ===== */
 .carousel {
     position: absolute;
     width: 1440px;
@@ -642,17 +626,6 @@ body {
     cursor: pointer;
 }
 
-.menu__highlight-rectangle {
-    position: absolute;
-    width: 94px;
-    height: 35px;
-    background: rgba(205, 205, 205, 0.3);
-    border-radius: 10px;
-    pointer-events: none;
-    transition: left 0.3s ease, top 0.3s ease;
-    z-index: 1;
-}
-
 /* ===== СТИЛИ ДЛЯ ТИТУЛЬНОЙ СТРАНИЦЫ (SPLASH) ===== */
 #splashOverlay {
     position: fixed;
@@ -926,22 +899,11 @@ body {
         width: 90%;
         max-width: 300px;
     }
-    .home .side-button--novelties {
-        width: 100%;
-        max-width: 49px;
-        height: auto;
-        min-height: 370px;
-        margin: 10px auto;
-    }
     .home .menu--default {
         display: flex !important;
         flex-wrap: wrap;
     }
     .home .menu-dropdown {
-        display: none !important;
-    }
-    .home .menu-dropdown.menu-dropdown--designers,
-    .home .menu-dropdown.menu-dropdown--novelties {
         display: none !important;
     }
 }
@@ -1015,7 +977,6 @@ body {
     pointer-events: none;
 }
 
-/* Кнопка — горизонтальная, текст горизонтальный */
 .splash-button {
     display: flex;
     flex-direction: row;
@@ -1023,7 +984,7 @@ body {
     align-items: center;
     padding: 18px 24px;
     gap: 10px;
-    width: 309px;          /* горизонтальная кнопка */
+    width: 309px;
     height: 55px;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.1), inset 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -1035,7 +996,6 @@ body {
     left: 50%;
     top: 85%;
     transform: translate(-50%, -50%);
-    /* Убрали поворот и вертикальную ориентацию */
 }
 
 .splash-button:hover {
@@ -1052,7 +1012,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Адаптив для кнопки на маленьких экранах */
 @media (max-width: 700px) {
     .splash-button {
         width: 240px;
@@ -1062,5 +1021,62 @@ body {
     }
     .splash-button span {
         font-size: 18px;
+    }
+}
+/* ===== ФИКСИРОВАННЫЙ ХЕДЕР ===== */
+#fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    pointer-events: none;        /* клики проходят сквозь, кроме вложенных элементов */
+    padding-top: 10px;
+}
+
+#fixed-header .menu--default,
+#fixed-header .menu-dropdown,
+#fixed-header .side-button {
+    pointer-events: auto;        /* интерактивность возвращаем */
+}
+
+/* Сдвигаем основной контент вниз, чтобы не перекрывался хедером */
+.home {
+    margin-top: 80px;           /* высота меню + отступ */
+}
+
+/* Адаптация для ширины экрана < 1440px */
+@media (max-width: 1440px) {
+    #fixed-header {
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+    #fixed-header .menu--default,
+    #fixed-header .side-button {
+        position: static;
+        margin: 0 auto 5px;
+        width: 100%;
+        max-width: 498px;
+        height: auto;
+        min-height: 49px;
+        transform: none !important;
+    }
+    #fixed-header .menu-dropdown {
+        position: static;
+        width: 100%;
+        max-width: 498px;
+        margin: 0 auto;
+    }
+    /* Скрываем старые элементы внутри .home (если остались) */
+    .home .menu--default,
+    .home .menu-dropdown,
+    .home .side-button {
+        display: none !important;
+    }
+    .home {
+        margin-top: 120px;      /* больше отступ на мобильных */
     }
 }
