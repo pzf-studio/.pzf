@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', scaleHome);
 
     // ============================================================
-    // 3. ВЫДЕЛЕНИЕ ПРИ НАВЕДЕНИИ (ПРЯМОУГОЛЬНИК) – теперь без деления на currentScale
+    // 3. ВЫДЕЛЕНИЕ ПРИ НАВЕДЕНИИ (ПРЯМОУГОЛЬНИК)
     // ============================================================
 
     const highlightRect = document.getElementById('highlightRect');
@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const menuRect = menuDefault.getBoundingClientRect();
         const itemRect = targetItem.getBoundingClientRect();
 
-        // Координаты относительно меню (без учёта масштаба, т.к. меню фиксировано)
         const left = itemRect.left - menuRect.left;
         const top = itemRect.top - menuRect.top;
         const width = itemRect.width;
@@ -354,10 +353,58 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation();
     });
 
+    // ============================================================
+    // 7. РАСКРЫВАЮЩИЙСЯ ПОИСК (добавлено)
+    // ============================================================
+    const sideButton = document.getElementById('sideButton');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchInput = document.getElementById('searchInput');
+
+    function toggleSearch(e) {
+        e.stopPropagation();
+        sideButton.classList.toggle('search-open');
+        if (sideButton.classList.contains('search-open')) {
+            searchInput.focus();
+        } else {
+            searchInput.blur();
+        }
+    }
+
+    if (searchToggle) searchToggle.addEventListener('click', toggleSearch);
+    if (searchIcon) searchIcon.addEventListener('click', toggleSearch);
+
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            sideButton.classList.remove('search-open');
+            this.blur();
+        }
+    });
+
+    searchInput.addEventListener('blur', function() {
+        setTimeout(() => {
+            if (!this.value) {
+                sideButton.classList.remove('search-open');
+            }
+        }, 150);
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+            alert(`Поиск: "${this.value.trim()}"`);
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!sideButton.contains(e.target) && sideButton.classList.contains('search-open')) {
+            sideButton.classList.remove('search-open');
+        }
+    });
+
 }); // конец DOMContentLoaded
 
 // ============================================================
-// 7. НАВИГАЦИОННАЯ ПАНЕЛЬ (добавляется в DOM)
+// 8. НАВИГАЦИОННАЯ ПАНЕЛЬ (добавляется в DOM)
 // ============================================================
 (function() {
     if (document.getElementById('global-nav-panel')) return;

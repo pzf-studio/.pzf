@@ -8,9 +8,7 @@
 </head>
 <body>
 
-    <!-- ===== ФИКСИРОВАННЫЙ ХЕДЕР (меню и боковая кнопка) ===== -->
     <div id="fixed-header">
-        <!-- Основное меню -->
         <div class="menu--default" id="menuDefault">
             <div class="menu__highlight-rectangle" id="highlightRect"></div>
             <div class="menu__inner">
@@ -22,34 +20,37 @@
             </div>
         </div>
 
-        <!-- Универсальный дропдаун -->
         <div class="menu-dropdown" id="menuDropdown">
             <div class="menu-dropdown__content" id="dropdownContent"></div>
         </div>
 
-        <!-- Боковая кнопка -->
         <div class="side-button" id="sideButton">
             <div class="side-button__inner">
-                <span class="side-button__text">ПОИСК</span>
+                <svg class="search-icon" id="searchIcon" width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="rgba(0, 0, 0, 0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 21L16.65 16.65" stroke="rgba(0, 0, 0, 0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <input type="text" class="search-input" id="searchInput" placeholder="Поиск...">
+
+                <span class="side-button__text" id="searchToggle">ПОИСК</span>
+
                 <a href="cart.html" class="side-button__text">КОРЗИНА</a>
             </div>
         </div>
     </div>
 
-    <!-- ===== ТИТУЛЬНАЯ СТРАНИЦА (SPLASH) ===== -->
     <div id="splashOverlay">
         <div class="splash-button" id="enterBtn">
             <span>НАЖМИТЕ ЧТОБЫ ВОЙТИ</span>
         </div>
     </div>
 
-    <!-- ===== ОСНОВНАЯ СТРАНИЦА (HOME) ===== -->
     <div class="home">
 
         <div class="logo"></div>
         <div class="logo logo--right"></div>
 
-        <!-- ===== КАРУСЕЛЬ ===== -->
         <div class="carousel">
             <div class="carousel__background"></div>
             <div class="carousel__track-container">
@@ -118,16 +119,12 @@
             </div>
         </div>
 
-        <!-- ===== СЕКЦИЯ НОВИНКИ ===== -->
         <div class="section-title">НОВИНКИ</div>
         <div class="watch-all-button" id="watchAllBtn">
             <span class="watch-all-button__text">СМОТРЕТЬ ВСЕ</span>
         </div>
 
-        <!-- ===== СЕТКА ТОВАРОВ ===== -->
         <div class="products-grid">
-            <!-- (все product-card остаются без изменений, я их не переписываю для краткости) -->
-            <!-- ... ваш код product-card ... -->
             <div class="product-card product-card--1">
                 <div class="product-card__bg"></div>
                 <div class="product-card__watermark"></div>
@@ -310,7 +307,6 @@
             </div>
         </div>
 
-        <!-- ===== СОЦИАЛЬНЫЕ СЕТИ ===== -->
         <div class="social-block">
             <div class="social-block__button">
                 <span class="social-block__button-text">СМОТРЕТЬ ВСЕ</span>
@@ -321,7 +317,6 @@
             <span class="social-block__link">VK</span>
         </div>
 
-        <!-- ===== ПОЛЕЗНАЯ ИНФОРМАЦИЯ ===== -->
         <div class="info-block">
             <div class="info-block__button">
                 <span class="info-block__button-text">СМОТРЕТЬ ВСЕ</span>

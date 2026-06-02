@@ -265,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: black;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             }
-            /* Адаптивность для маленьких экранов */
             @media (max-width: 700px) {
                 #global-nav-panel {
                     bottom: 10px;
